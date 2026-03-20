@@ -6,357 +6,472 @@
 <title>Study Space ✦</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+  /* ═══════════════════════════════════════
+     BASE THEME TOKENS (dark BGs — white text)
+  ═══════════════════════════════════════ */
   :root {
-    --accent: #e8c5a0;
-    --accent2: #c9b8f0;
-    --glass: rgba(255,255,255,0.18);
-    --glass-border: rgba(255,255,255,0.3);
-    --text-main: #2a1f14;
-    --text-light: rgba(255,255,255,0.92);
-    --text-muted: rgba(255,255,255,0.65);
-    --card-bg: rgba(255,255,255,0.15);
-    --card-border: rgba(255,255,255,0.25);
-    --input-bg: rgba(255,255,255,0.2);
-    --shadow: 0 8px 32px rgba(0,0,0,0.18);
+    --text-primary:   rgba(255,255,255,0.95);
+    --text-muted:     rgba(255,255,255,0.58);
+    --accent:         #f0d0a8;
+    --accent2:        #c9b8f0;
+    --glass:          rgba(255,255,255,0.13);
+    --glass-border:   rgba(255,255,255,0.26);
+    --card-bg:        rgba(255,255,255,0.12);
+    --card-border:    rgba(255,255,255,0.2);
+    --input-bg:       rgba(255,255,255,0.16);
+    --input-text:     rgba(255,255,255,0.95);
+    --shadow:         0 8px 32px rgba(0,0,0,0.25);
+    --notes-bg:       rgba(0,0,0,0.15);
+    --sep:            rgba(255,255,255,0.16);
+    --btn-bg:         rgba(255,255,255,0.14);
+    --btn-border:     rgba(255,255,255,0.25);
+    --btn-hover:      rgba(255,255,255,0.24);
+    --swatch-ring:    #ffffff;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  /* ── Pic 1: Purple Dusk ── dark bg, white text */
+  body.bg-1 { background: linear-gradient(140deg,#4a2080 0%,#764ba2 45%,#a84fd4 100%); }
 
+  /* ── Pic 2: Golden Hour ── LIGHT, dark text */
+  body.bg-2 {
+    background: linear-gradient(135deg,#ffe066 0%,#ffb347 45%,#ff8c61 100%);
+    --text-primary: rgba(60,28,8,0.95);
+    --text-muted:   rgba(80,38,10,0.58);
+    --accent:       #7a3c0a;   --accent2: #a05010;
+    --glass:        rgba(255,255,255,0.42);
+    --glass-border: rgba(220,160,60,0.4);
+    --card-bg:      rgba(255,255,255,0.34);
+    --card-border:  rgba(220,160,60,0.32);
+    --input-bg:     rgba(255,255,255,0.5);
+    --input-text:   rgba(60,28,8,0.95);
+    --shadow:       0 8px 32px rgba(140,70,0,0.2);
+    --notes-bg:     rgba(0,0,0,0.06);
+    --sep:          rgba(140,70,0,0.18);
+    --btn-bg:       rgba(255,255,255,0.36);
+    --btn-border:   rgba(180,100,20,0.32);
+    --btn-hover:    rgba(255,255,255,0.56);
+    --swatch-ring:  #7a3c0a;
+  }
+
+  /* ── Pic 3: Ocean Mint ── LIGHT, dark text */
+  body.bg-3 {
+    background: linear-gradient(135deg,#43e97b 0%,#1dd9b5 50%,#38c6f9 100%);
+    --text-primary: rgba(8,46,36,0.95);
+    --text-muted:   rgba(10,55,42,0.58);
+    --accent:       #064030;   --accent2: #085c48;
+    --glass:        rgba(255,255,255,0.36);
+    --glass-border: rgba(120,240,200,0.38);
+    --card-bg:      rgba(255,255,255,0.3);
+    --card-border:  rgba(120,240,200,0.32);
+    --input-bg:     rgba(255,255,255,0.46);
+    --input-text:   rgba(8,46,36,0.95);
+    --shadow:       0 8px 32px rgba(0,100,70,0.2);
+    --notes-bg:     rgba(0,0,0,0.06);
+    --sep:          rgba(0,100,70,0.18);
+    --btn-bg:       rgba(255,255,255,0.33);
+    --btn-border:   rgba(0,140,100,0.32);
+    --btn-hover:    rgba(255,255,255,0.53);
+    --swatch-ring:  #064030;
+  }
+
+  /* ── Pic 4: Sunset Rose ── LIGHT, dark text */
+  body.bg-4 {
+    background: linear-gradient(135deg,#ff758c 0%,#ff6b4a 50%,#ffd86f 100%);
+    --text-primary: rgba(58,14,26,0.95);
+    --text-muted:   rgba(70,18,28,0.58);
+    --accent:       #580f20;   --accent2: #7a1c10;
+    --glass:        rgba(255,255,255,0.38);
+    --glass-border: rgba(255,170,170,0.38);
+    --card-bg:      rgba(255,255,255,0.32);
+    --card-border:  rgba(255,170,160,0.32);
+    --input-bg:     rgba(255,255,255,0.48);
+    --input-text:   rgba(58,14,26,0.95);
+    --shadow:       0 8px 32px rgba(160,40,40,0.2);
+    --notes-bg:     rgba(0,0,0,0.06);
+    --sep:          rgba(160,40,50,0.18);
+    --btn-bg:       rgba(255,255,255,0.34);
+    --btn-border:   rgba(200,70,70,0.32);
+    --btn-hover:    rgba(255,255,255,0.54);
+    --swatch-ring:  #580f20;
+  }
+
+  /* ── Pic 5: Cotton Candy ── LIGHT, dark text */
+  body.bg-5 {
+    background: linear-gradient(135deg,#fbc2eb 0%,#b8aaee 50%,#a6c1ee 100%);
+    --text-primary: rgba(36,16,66,0.95);
+    --text-muted:   rgba(48,22,78,0.56);
+    --accent:       #32126a;   --accent2: #4c24a0;
+    --glass:        rgba(255,255,255,0.44);
+    --glass-border: rgba(190,160,255,0.44);
+    --card-bg:      rgba(255,255,255,0.38);
+    --card-border:  rgba(190,160,255,0.36);
+    --input-bg:     rgba(255,255,255,0.54);
+    --input-text:   rgba(36,16,66,0.95);
+    --shadow:       0 8px 32px rgba(80,36,140,0.16);
+    --notes-bg:     rgba(0,0,0,0.05);
+    --sep:          rgba(100,60,180,0.18);
+    --btn-bg:       rgba(255,255,255,0.4);
+    --btn-border:   rgba(130,90,210,0.32);
+    --btn-hover:    rgba(255,255,255,0.6);
+    --swatch-ring:  #32126a;
+  }
+
+  /* ── Pic 6: Deep Teal ── dark bg, white text */
+  body.bg-6 {
+    background: linear-gradient(135deg,#0f2027 0%,#1a3a45 50%,#2c5364 100%);
+    --accent: #5dd4e8;  --accent2: #7de8c0;
+  }
+
+  /* ── Pic 7: Purple Night Sky ✦ ── dark bg, white text */
+  body.bg-7 {
+    background: linear-gradient(160deg,#08021a 0%,#160530 25%,#2a0d50 55%,#130428 80%,#060112 100%);
+    --accent:       #c084fc;
+    --accent2:      #818cf8;
+    --glass:        rgba(130,60,220,0.16);
+    --glass-border: rgba(180,110,255,0.28);
+    --card-bg:      rgba(90,30,170,0.18);
+    --card-border:  rgba(170,100,255,0.22);
+    --input-bg:     rgba(110,50,190,0.2);
+    --notes-bg:     rgba(60,20,120,0.22);
+    --sep:          rgba(180,110,255,0.18);
+    --btn-bg:       rgba(140,70,230,0.18);
+    --btn-border:   rgba(180,110,255,0.28);
+    --btn-hover:    rgba(160,90,240,0.3);
+  }
+
+  /* ── Pic 8: Lavender Sky ── LIGHT, dark text */
+  body.bg-8 {
+    background: linear-gradient(135deg,#e8d8fc 0%,#cfc0f8 40%,#9fc5fd 100%);
+    --text-primary: rgba(26,12,58,0.95);
+    --text-muted:   rgba(38,18,72,0.56);
+    --accent:       #28106a;   --accent2: #461a96;
+    --glass:        rgba(255,255,255,0.44);
+    --glass-border: rgba(195,172,255,0.46);
+    --card-bg:      rgba(255,255,255,0.4);
+    --card-border:  rgba(195,172,255,0.4);
+    --input-bg:     rgba(255,255,255,0.55);
+    --input-text:   rgba(26,12,58,0.95);
+    --shadow:       0 8px 32px rgba(70,36,160,0.16);
+    --notes-bg:     rgba(0,0,0,0.05);
+    --sep:          rgba(100,60,200,0.18);
+    --btn-bg:       rgba(255,255,255,0.4);
+    --btn-border:   rgba(130,90,220,0.36);
+    --btn-hover:    rgba(255,255,255,0.62);
+    --swatch-ring:  #28106a;
+  }
+
+  /* ═══════════════ BASE ═══════════════ */
+  * { margin:0; padding:0; box-sizing:border-box; }
   body {
-    font-family: 'DM Sans', sans-serif;
-    min-height: 100vh;
-    background: #b8a89a;
-    transition: background 0.8s ease;
-    color: var(--text-light);
+    font-family:'DM Sans',sans-serif; min-height:100vh;
+    transition: background 0.7s ease; color: var(--text-primary);
   }
 
-  body.bg-1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); }
-  body.bg-2 { background: linear-gradient(135deg, #f6d365 0%, #fda085 50%, #f093fb 100%); }
-  body.bg-3 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 50%, #43e97b 100%); }
-  body.bg-4 { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
-  body.bg-5 { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 50%, #d299c2 100%); }
-  body.bg-6 { background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); }
-  body.bg-7 { background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%); }
-  body.bg-8 { background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); }
-
-  body.bg-5 { --text-light: rgba(60,30,80,0.95); --text-muted: rgba(60,30,80,0.65); --card-bg: rgba(255,255,255,0.35); --card-border: rgba(255,255,255,0.55); --glass: rgba(255,255,255,0.3); }
-  body.bg-8 { --text-light: rgba(40,20,70,0.95); --text-muted: rgba(40,20,70,0.6); --card-bg: rgba(255,255,255,0.35); --card-border: rgba(255,255,255,0.55); }
+  /* stars canvas for bg-7 */
+  #starsCanvas {
+    position:fixed; inset:0; pointer-events:none; z-index:0;
+    opacity:0; transition:opacity 0.8s;
+  }
+  body.bg-7 #starsCanvas { opacity:1; }
 
   .noise-overlay {
-    position: fixed; inset: 0; pointer-events: none; z-index: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    opacity: 0.4;
+    position:fixed; inset:0; pointer-events:none; z-index:0;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    opacity:0.5;
   }
 
   .page-wrapper {
-    position: relative; z-index: 1;
-    max-width: 1100px; margin: 0 auto;
-    padding: 2rem 1.5rem 4rem;
+    position:relative; z-index:1;
+    max-width:1100px; margin:0 auto; padding:2rem 1.5rem 4rem;
   }
 
   /* ── HEADER ── */
-  .header {
-    text-align: center; margin-bottom: 2.5rem;
-  }
+  .header { text-align:center; margin-bottom:2.5rem; }
   .header h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.4rem, 5vw, 3.6rem);
-    font-weight: 600; letter-spacing: -0.01em;
-    text-shadow: 0 2px 20px rgba(0,0,0,0.25);
-    line-height: 1.1;
+    font-family:'Playfair Display',serif;
+    font-size:clamp(2.4rem,5vw,3.6rem); font-weight:600;
+    letter-spacing:-0.01em; color:var(--text-primary);
+    text-shadow:0 2px 24px rgba(0,0,0,0.12); line-height:1.1;
   }
-  .header h1 em { font-style: italic; }
+  .header h1 em { font-style:italic; }
   .header p {
-    margin-top: 0.5rem; font-size: 0.95rem;
-    color: var(--text-muted); font-weight: 300; letter-spacing: 0.08em;
-    text-transform: uppercase;
+    margin-top:0.5rem; font-size:0.88rem;
+    color:var(--text-muted); font-weight:300;
+    letter-spacing:0.1em; text-transform:uppercase;
   }
-  .dot { display: inline-block; margin: 0 6px; opacity: 0.5; font-size: 0.7em; }
+  .dot { display:inline-block; margin:0 6px; opacity:0.4; font-size:0.7em; }
 
   /* ── TOP BAR ── */
   .top-bar {
-    display: flex; flex-wrap: wrap; gap: 1rem;
-    align-items: center; justify-content: space-between;
-    background: var(--glass); border: 1px solid var(--glass-border);
-    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-    border-radius: 20px; padding: 1rem 1.4rem;
-    margin-bottom: 2rem;
-    box-shadow: var(--shadow);
+    display:flex; flex-wrap:wrap; gap:1rem;
+    align-items:center; justify-content:space-between;
+    background:var(--glass); border:1px solid var(--glass-border);
+    backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+    border-radius:20px; padding:1rem 1.4rem;
+    margin-bottom:2rem; box-shadow:var(--shadow);
   }
-  .top-bar-section { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; }
-  .top-bar label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); }
+  .top-bar-section { display:flex; align-items:center; gap:0.8rem; flex-wrap:wrap; }
+  .top-bar label { font-size:0.74rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-muted); }
 
-  /* bg picker */
-  .bg-swatches { display: flex; gap: 6px; flex-wrap: wrap; }
+  .bg-swatches { display:flex; gap:6px; flex-wrap:wrap; }
   .bg-swatch {
-    width: 28px; height: 28px; border-radius: 50%; cursor: pointer;
-    border: 2px solid transparent;
-    transition: transform 0.2s, border-color 0.2s;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    width:28px; height:28px; border-radius:50%; cursor:pointer;
+    border:2.5px solid transparent;
+    transition:transform 0.2s, border-color 0.2s;
+    box-shadow:0 2px 8px rgba(0,0,0,0.28);
   }
-  .bg-swatch:hover { transform: scale(1.15); }
-  .bg-swatch.active { border-color: white; transform: scale(1.15); }
-  .sw1 { background: linear-gradient(135deg, #667eea, #f093fb); }
-  .sw2 { background: linear-gradient(135deg, #f6d365, #fda085); }
-  .sw3 { background: linear-gradient(135deg, #4facfe, #43e97b); }
-  .sw4 { background: linear-gradient(135deg, #fa709a, #fee140); }
-  .sw5 { background: linear-gradient(135deg, #a8edea, #d299c2); }
-  .sw6 { background: linear-gradient(135deg, #30cfd0, #330867); }
-  .sw7 { background: linear-gradient(135deg, #0f0c29, #24243e); }
-  .sw8 { background: linear-gradient(135deg, #e0c3fc, #8ec5fc); }
+  .bg-swatch:hover { transform:scale(1.18); }
+  .bg-swatch.active { border-color:var(--swatch-ring); transform:scale(1.18); }
+  .sw1{background:linear-gradient(135deg,#4a2080,#a84fd4);}
+  .sw2{background:linear-gradient(135deg,#ffe066,#ff8c61);}
+  .sw3{background:linear-gradient(135deg,#43e97b,#38c6f9);}
+  .sw4{background:linear-gradient(135deg,#ff758c,#ffd86f);}
+  .sw5{background:linear-gradient(135deg,#fbc2eb,#a6c1ee);}
+  .sw6{background:linear-gradient(135deg,#0f2027,#2c5364);}
+  .sw7{background:linear-gradient(135deg,#160530,#2a0d50);}
+  .sw8{background:linear-gradient(135deg,#e8d8fc,#9fc5fd);}
 
-  /* spotify */
-  .spotify-row {
-    display: flex; align-items: center; gap: 0.5rem;
-  }
+  /* Spotify area */
+  .spotify-section { display:flex; flex-direction:column; gap:5px; align-items:flex-end; }
+  .spotify-row { display:flex; align-items:center; gap:0.45rem; }
   .spotify-input {
-    background: var(--input-bg); border: 1px solid var(--card-border);
-    border-radius: 10px; padding: 6px 12px;
-    color: var(--text-light); font-family: 'DM Sans', sans-serif; font-size: 0.82rem;
-    width: 200px; outline: none; transition: border-color 0.2s;
-    backdrop-filter: blur(8px);
+    background:var(--input-bg); border:1px solid var(--card-border);
+    border-radius:10px; padding:6px 12px;
+    color:var(--input-text); font-family:'DM Sans',sans-serif; font-size:0.82rem;
+    width:215px; outline:none; transition:border-color 0.2s;
   }
-  .spotify-input::placeholder { color: var(--text-muted); }
-  .spotify-input:focus { border-color: rgba(255,255,255,0.6); }
-  .spotify-btn {
-    background: #1DB954; border: none; border-radius: 10px;
-    padding: 6px 14px; color: white; font-family: 'DM Sans', sans-serif;
-    font-size: 0.82rem; font-weight: 500; cursor: pointer;
-    transition: opacity 0.2s, transform 0.15s; white-space: nowrap;
-    display: flex; align-items: center; gap: 5px;
+  .spotify-input::placeholder { color:var(--text-muted); }
+  .spotify-input:focus { border-color:var(--glass-border); }
+  .sp-play-btn {
+    background:#1DB954; border:none; border-radius:10px;
+    padding:6px 14px; color:#fff; font-family:'DM Sans',sans-serif;
+    font-size:0.82rem; font-weight:500; cursor:pointer;
+    transition:opacity 0.2s, transform 0.15s;
   }
-  .spotify-btn:hover { opacity: 0.88; transform: scale(1.03); }
-  .spotify-link-display {
-    margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted);
-    display: none;
+  .sp-play-btn:hover { opacity:0.84; transform:scale(1.03); }
+  .sp-clear-btn {
+    background:var(--btn-bg); border:1px solid var(--btn-border);
+    border-radius:10px; padding:6px 10px; color:var(--text-muted);
+    font-family:'DM Sans',sans-serif; font-size:0.82rem; cursor:pointer;
+    transition:background 0.15s;
   }
-  .spotify-link-display a { color: #1DB954; text-decoration: none; font-weight: 500; }
+  .sp-clear-btn:hover { background:var(--btn-hover); color:var(--text-primary); }
+  .sp-hint { font-size:0.7rem; color:var(--text-muted); }
 
-  /* date */
   .date-display {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.82rem; color: var(--text-muted);
-    letter-spacing: 0.04em;
+    font-family:'DM Mono',monospace; font-size:0.77rem;
+    color:var(--text-muted); letter-spacing:0.04em;
   }
 
-  /* ── POMODORO GLOBAL ── */
+  /* ── SPOTIFY PANEL ── */
+  .spotify-panel {
+    background:var(--glass); border:1px solid var(--glass-border);
+    backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+    border-radius:20px; padding:1.2rem 1.4rem;
+    margin-bottom:2rem; box-shadow:var(--shadow);
+    display:none;
+  }
+  .spotify-panel.open { display:block; }
+  .spotify-panel-label {
+    font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em;
+    color:var(--text-muted); margin-bottom:0.7rem;
+  }
+  .spotify-panel iframe { width:100%; border-radius:12px; border:none; display:block; }
+
+  /* ── POMODORO ── */
   .pomo-global {
-    background: var(--glass); border: 1px solid var(--glass-border);
-    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-    border-radius: 20px; padding: 1.2rem 1.6rem;
-    margin-bottom: 2rem;
-    box-shadow: var(--shadow);
-    display: flex; flex-wrap: wrap; align-items: center; gap: 1.2rem;
+    background:var(--glass); border:1px solid var(--glass-border);
+    backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+    border-radius:20px; padding:1.2rem 1.6rem;
+    margin-bottom:2rem; box-shadow:var(--shadow);
+    display:flex; flex-wrap:wrap; align-items:center; gap:1.2rem;
   }
   .pomo-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem; font-style: italic; color: var(--text-light);
+    font-family:'Playfair Display',serif;
+    font-size:1rem; font-style:italic; color:var(--text-primary);
   }
   .pomo-timer-display {
-    font-family: 'DM Mono', monospace;
-    font-size: 2rem; font-weight: 500; letter-spacing: 0.05em;
-    color: var(--accent); text-shadow: 0 0 20px rgba(232,197,160,0.4);
-    min-width: 90px; text-align: center;
+    font-family:'DM Mono',monospace; font-size:2rem; font-weight:500;
+    letter-spacing:0.05em; color:var(--accent); min-width:90px; text-align:center;
   }
-  .pomo-controls { display: flex; align-items: center; gap: 0.5rem; }
+  .pomo-controls { display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap; }
   .pomo-btn {
-    background: rgba(255,255,255,0.15); border: 1px solid var(--card-border);
-    border-radius: 10px; padding: 6px 14px; color: var(--text-light);
-    font-family: 'DM Sans', sans-serif; font-size: 0.82rem; cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
-    backdrop-filter: blur(6px);
+    background:var(--btn-bg); border:1px solid var(--btn-border);
+    border-radius:10px; padding:6px 14px; color:var(--text-primary);
+    font-family:'DM Sans',sans-serif; font-size:0.82rem; cursor:pointer;
+    transition:background 0.2s, transform 0.15s;
   }
-  .pomo-btn:hover { background: rgba(255,255,255,0.25); }
-  .pomo-btn:active { transform: scale(0.97); }
-  .pomo-btn.primary { background: rgba(232,197,160,0.3); border-color: rgba(232,197,160,0.5); }
+  .pomo-btn:hover { background:var(--btn-hover); }
+  .pomo-btn:active { transform:scale(0.97); }
+  .pomo-btn.primary { background:rgba(128,80,200,0.22); border-color:rgba(180,130,255,0.35); }
+  body.bg-2 .pomo-btn.primary,
+  body.bg-3 .pomo-btn.primary,
+  body.bg-4 .pomo-btn.primary,
+  body.bg-5 .pomo-btn.primary,
+  body.bg-8 .pomo-btn.primary {
+    background:rgba(0,0,0,0.1); border-color:rgba(0,0,0,0.2);
+  }
   .pomo-select {
-    background: var(--input-bg); border: 1px solid var(--card-border);
-    border-radius: 10px; padding: 6px 10px;
-    color: var(--text-light); font-family: 'DM Sans', sans-serif; font-size: 0.82rem;
-    outline: none; cursor: pointer; backdrop-filter: blur(8px);
+    background:var(--input-bg); border:1px solid var(--card-border);
+    border-radius:10px; padding:6px 10px; color:var(--input-text);
+    font-family:'DM Sans',sans-serif; font-size:0.82rem; outline:none; cursor:pointer;
   }
-  .pomo-select option { background: #4a3060; color: white; }
+  .pomo-select option { background:#1e0a3c; color:#fff; }
   .pomo-phase {
-    font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em;
-    color: var(--text-muted); font-weight: 400;
+    font-size:0.74rem; text-transform:uppercase; letter-spacing:0.1em;
+    color:var(--text-muted);
   }
-  .pomo-progress-ring { position: relative; width: 56px; height: 56px; }
-  .pomo-progress-ring svg { position: absolute; top: 0; left: 0; transform: rotate(-90deg); }
-  .pomo-ring-bg { fill: none; stroke: rgba(255,255,255,0.15); stroke-width: 3; }
-  .pomo-ring-fg { fill: none; stroke: var(--accent); stroke-width: 3; stroke-linecap: round; transition: stroke-dashoffset 0.5s ease; }
-  .pomo-ring-label {
-    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-    font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--accent); font-weight: 500;
+  .pomo-ring { position:relative; width:56px; height:56px; flex-shrink:0; }
+  .pomo-ring svg { position:absolute; top:0; left:0; transform:rotate(-90deg); }
+  .pomo-ring-bg { fill:none; stroke:rgba(128,128,128,0.18); stroke-width:3; }
+  .pomo-ring-fg { fill:none; stroke:var(--accent); stroke-width:3; stroke-linecap:round; transition:stroke-dashoffset 0.5s ease; }
+  .pomo-ring-lbl {
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-family:'DM Mono',monospace; font-size:0.62rem; color:var(--accent); font-weight:500;
   }
 
-  /* ── SCHEDULE GRID ── */
+  /* ── SCHEDULE ── */
   .schedule-header {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 1.2rem;
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:1.2rem;
   }
   .schedule-header h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem; font-weight: 600;
+    font-family:'Playfair Display',serif;
+    font-size:1.5rem; font-weight:600; color:var(--text-primary);
   }
   .save-btn {
-    background: rgba(255,255,255,0.15); border: 1px solid var(--card-border);
-    border-radius: 12px; padding: 8px 18px; color: var(--text-light);
-    font-family: 'DM Sans', sans-serif; font-size: 0.85rem; cursor: pointer;
-    transition: background 0.2s; font-weight: 500;
+    background:var(--btn-bg); border:1px solid var(--btn-border);
+    border-radius:12px; padding:8px 18px; color:var(--text-primary);
+    font-family:'DM Sans',sans-serif; font-size:0.84rem; cursor:pointer;
+    transition:background 0.2s; font-weight:500;
   }
-  .save-btn:hover { background: rgba(255,255,255,0.25); }
-  .save-btn.saved { background: rgba(100,200,130,0.25); border-color: rgba(100,200,130,0.4); }
+  .save-btn:hover { background:var(--btn-hover); }
+  .save-btn.saved { background:rgba(50,180,90,0.2); border-color:rgba(50,180,90,0.38); }
 
   .periods-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.2rem;
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:1.2rem;
   }
 
   /* ── PERIOD CARD ── */
   .period-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-    border-radius: 20px;
-    padding: 1.3rem 1.4rem;
-    box-shadow: var(--shadow);
-    transition: transform 0.2s, box-shadow 0.2s;
-    display: flex; flex-direction: column; gap: 0.9rem;
+    background:var(--card-bg); border:1px solid var(--card-border);
+    backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+    border-radius:20px; padding:1.3rem 1.4rem; box-shadow:var(--shadow);
+    display:flex; flex-direction:column; gap:0.9rem;
+    transition:transform 0.2s, box-shadow 0.2s;
+    animation:fadeUp 0.4s ease both;
   }
-  .period-card:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.22); }
+  .period-card:hover { transform:translateY(-2px); box-shadow:0 14px 44px rgba(0,0,0,0.22); }
+  .period-card:nth-child(1){animation-delay:.05s}
+  .period-card:nth-child(2){animation-delay:.10s}
+  .period-card:nth-child(3){animation-delay:.15s}
+  .period-card:nth-child(4){animation-delay:.20s}
+  .period-card:nth-child(5){animation-delay:.25s}
+  .period-card:nth-child(6){animation-delay:.30s}
+  .period-card:nth-child(7){animation-delay:.35s}
 
-  .period-top {
-    display: flex; align-items: center; justify-content: space-between;
-  }
+  .period-top { display:flex; align-items:center; justify-content:space-between; }
   .period-badge {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--text-muted);
-    background: rgba(255,255,255,0.12);
-    padding: 3px 10px; border-radius: 20px;
+    font-family:'DM Mono',monospace; font-size:0.67rem;
+    letter-spacing:0.12em; text-transform:uppercase; color:var(--text-muted);
+    background:rgba(128,128,128,0.14); padding:3px 10px; border-radius:20px;
   }
-  .period-pomo-mini {
-    display: flex; align-items: center; gap: 6px;
-  }
-  .mini-timer { font-family: 'DM Mono', monospace; font-size: 0.8rem; color: var(--accent); }
+  .period-pomo-mini { display:flex; align-items:center; gap:6px; }
+  .mini-timer { font-family:'DM Mono',monospace; font-size:0.77rem; color:var(--accent); }
   .mini-btn {
-    background: none; border: 1px solid rgba(255,255,255,0.25); border-radius: 8px;
-    padding: 2px 8px; font-size: 0.72rem; color: var(--text-light);
-    cursor: pointer; transition: background 0.15s;
+    background:none; border:1px solid var(--card-border); border-radius:8px;
+    padding:2px 8px; font-size:0.71rem; color:var(--text-primary);
+    cursor:pointer; transition:background 0.15s; font-family:'DM Sans',sans-serif;
   }
-  .mini-btn:hover { background: rgba(255,255,255,0.15); }
-  .mini-btn.running { background: rgba(232,197,160,0.2); border-color: rgba(232,197,160,0.4); }
+  .mini-btn:hover { background:var(--btn-bg); }
+  .mini-btn.running { background:rgba(200,160,255,0.18); border-color:rgba(200,160,255,0.36); }
 
   .class-name-input {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.15rem; font-weight: 600;
-    background: transparent; border: none;
-    border-bottom: 1px solid rgba(255,255,255,0.2);
-    color: var(--text-light); width: 100%;
-    outline: none; padding-bottom: 4px;
-    transition: border-color 0.2s;
+    font-family:'Playfair Display',serif; font-size:1.15rem; font-weight:600;
+    background:transparent; border:none; border-bottom:1px solid var(--sep);
+    color:var(--text-primary); width:100%; outline:none;
+    padding-bottom:4px; transition:border-color 0.2s;
   }
-  .class-name-input::placeholder { color: var(--text-muted); font-style: italic; font-weight: 400; }
-  .class-name-input:focus { border-bottom-color: rgba(255,255,255,0.5); }
+  .class-name-input::placeholder { color:var(--text-muted); font-style:italic; font-weight:400; }
+  .class-name-input:focus { border-bottom-color:var(--card-border); }
 
-  .time-row { display: flex; gap: 8px; align-items: center; }
+  .time-row { display:flex; gap:8px; align-items:center; }
   .time-input {
-    background: var(--input-bg); border: 1px solid var(--card-border);
-    border-radius: 8px; padding: 4px 8px;
-    color: var(--text-light); font-family: 'DM Mono', monospace; font-size: 0.78rem;
-    outline: none; width: 80px; transition: border-color 0.2s;
-    backdrop-filter: blur(6px);
+    background:var(--input-bg); border:1px solid var(--card-border);
+    border-radius:8px; padding:4px 8px; color:var(--input-text);
+    font-family:'DM Mono',monospace; font-size:0.77rem;
+    outline:none; width:82px; transition:border-color 0.2s;
   }
-  .time-input:focus { border-color: rgba(255,255,255,0.5); }
-  .time-label { font-size: 0.75rem; color: var(--text-muted); }
+  .time-label { font-size:0.73rem; color:var(--text-muted); }
 
   .teacher-input {
-    background: var(--input-bg); border: 1px solid var(--card-border);
-    border-radius: 8px; padding: 5px 10px;
-    color: var(--text-light); font-family: 'DM Sans', sans-serif; font-size: 0.82rem;
-    outline: none; width: 100%; transition: border-color 0.2s;
-    backdrop-filter: blur(6px);
+    background:var(--input-bg); border:1px solid var(--card-border);
+    border-radius:8px; padding:5px 10px; color:var(--input-text);
+    font-family:'DM Sans',sans-serif; font-size:0.82rem;
+    outline:none; width:100%; transition:border-color 0.2s;
   }
-  .teacher-input::placeholder { color: var(--text-muted); }
-  .teacher-input:focus { border-color: rgba(255,255,255,0.5); }
+  .teacher-input::placeholder { color:var(--text-muted); }
 
   .notes-label {
-    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em;
-    color: var(--text-muted); margin-bottom: 4px;
+    font-size:0.67rem; text-transform:uppercase; letter-spacing:0.1em;
+    color:var(--text-muted); margin-bottom:4px;
   }
   .notes-area {
-    background: rgba(0,0,0,0.12); border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 12px; padding: 10px 12px;
-    color: var(--text-light); font-family: 'DM Sans', sans-serif; font-size: 0.85rem;
-    resize: vertical; min-height: 80px; outline: none;
-    line-height: 1.6; width: 100%; transition: border-color 0.2s;
-    font-weight: 300;
+    background:var(--notes-bg); border:1px solid var(--sep);
+    border-radius:12px; padding:10px 12px; color:var(--text-primary);
+    font-family:'DM Sans',sans-serif; font-size:0.85rem;
+    resize:vertical; min-height:78px; outline:none;
+    line-height:1.6; width:100%; font-weight:300; transition:border-color 0.2s;
   }
-  .notes-area::placeholder { color: var(--text-muted); }
-  .notes-area:focus { border-color: rgba(255,255,255,0.35); }
+  .notes-area::placeholder { color:var(--text-muted); }
+  .notes-area:focus { border-color:var(--card-border); }
 
-  .todo-section { display: flex; flex-direction: column; gap: 5px; }
-  .todo-row { display: flex; align-items: center; gap: 6px; }
-  .todo-check {
-    width: 16px; height: 16px; cursor: pointer;
-    accent-color: var(--accent2); flex-shrink: 0;
-  }
+  .todo-section { display:flex; flex-direction:column; gap:5px; }
+  .todo-row { display:flex; align-items:center; gap:6px; }
+  .todo-check { width:15px; height:15px; cursor:pointer; accent-color:var(--accent2); flex-shrink:0; }
   .todo-text {
-    background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.15);
-    color: var(--text-light); font-family: 'DM Sans', sans-serif; font-size: 0.82rem;
-    outline: none; flex: 1; padding: 2px 0; transition: border-color 0.2s;
+    background:transparent; border:none; border-bottom:1px solid var(--sep);
+    color:var(--text-primary); font-family:'DM Sans',sans-serif; font-size:0.82rem;
+    outline:none; flex:1; padding:2px 0; transition:border-color 0.2s;
   }
-  .todo-text::placeholder { color: var(--text-muted); }
-  .todo-text:focus { border-bottom-color: rgba(255,255,255,0.4); }
-  .todo-text.done { text-decoration: line-through; opacity: 0.5; }
+  .todo-text::placeholder { color:var(--text-muted); }
+  .todo-text:focus { border-bottom-color:var(--card-border); }
+  .todo-text.done { text-decoration:line-through; opacity:0.44; }
   .todo-del {
-    background: none; border: none; color: var(--text-muted); cursor: pointer;
-    font-size: 0.9rem; padding: 0 2px; transition: color 0.15s; line-height: 1;
+    background:none; border:none; color:var(--text-muted); cursor:pointer;
+    font-size:0.86rem; padding:0 2px; transition:color 0.15s; line-height:1;
   }
-  .todo-del:hover { color: rgba(255,140,140,0.8); }
+  .todo-del:hover { color:rgba(220,70,70,0.82); }
   .add-todo-btn {
-    background: none; border: 1px dashed rgba(255,255,255,0.25); border-radius: 8px;
-    padding: 4px 10px; color: var(--text-muted); font-size: 0.75rem;
-    cursor: pointer; text-align: left; transition: border-color 0.2s, color 0.2s;
-    font-family: 'DM Sans', sans-serif;
+    background:none; border:1px dashed var(--sep); border-radius:8px;
+    padding:4px 10px; color:var(--text-muted); font-size:0.73rem;
+    cursor:pointer; transition:border-color 0.2s, color 0.2s;
+    font-family:'DM Sans',sans-serif; text-align:left;
   }
-  .add-todo-btn:hover { border-color: rgba(255,255,255,0.45); color: var(--text-light); }
+  .add-todo-btn:hover { border-color:var(--card-border); color:var(--text-primary); }
 
-  /* ── FOOTER ── */
   .footer {
-    text-align: center; margin-top: 3rem;
-    font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.08em;
+    text-align:center; margin-top:3rem;
+    font-size:0.73rem; color:var(--text-muted); letter-spacing:0.06em;
   }
-  .footer span { opacity: 0.5; }
 
-  /* ── NOTIFICATION ── */
   .notif {
-    position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px);
-    background: rgba(30,20,50,0.9); backdrop-filter: blur(16px);
-    border: 1px solid rgba(255,255,255,0.2); border-radius: 14px;
-    padding: 12px 22px; color: white; font-size: 0.85rem; font-weight: 500;
-    z-index: 999; transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
-    pointer-events: none;
+    position:fixed; bottom:2rem; left:50%;
+    transform:translateX(-50%) translateY(100px);
+    background:rgba(16,8,36,0.93); backdrop-filter:blur(16px);
+    border:1px solid rgba(200,160,255,0.24); border-radius:14px;
+    padding:12px 22px; color:#fff; font-size:0.84rem; font-weight:500;
+    z-index:999; transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    pointer-events:none;
   }
-  .notif.show { transform: translateX(-50%) translateY(0); }
+  .notif.show { transform:translateX(-50%) translateY(0); }
 
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .period-card { animation: fadeUp 0.4s ease both; }
-  .period-card:nth-child(1) { animation-delay: 0.05s; }
-  .period-card:nth-child(2) { animation-delay: 0.10s; }
-  .period-card:nth-child(3) { animation-delay: 0.15s; }
-  .period-card:nth-child(4) { animation-delay: 0.20s; }
-  .period-card:nth-child(5) { animation-delay: 0.25s; }
-  .period-card:nth-child(6) { animation-delay: 0.30s; }
-  .period-card:nth-child(7) { animation-delay: 0.35s; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
 </style>
 </head>
 <body class="bg-1">
+
+<canvas id="starsCanvas"></canvas>
 <div class="noise-overlay"></div>
 
 <div class="page-wrapper">
@@ -378,34 +493,41 @@
         <div class="bg-swatch sw4" data-bg="bg-4" title="Pic 4 – Sunset Rose"></div>
         <div class="bg-swatch sw5" data-bg="bg-5" title="Pic 5 – Cotton Candy"></div>
         <div class="bg-swatch sw6" data-bg="bg-6" title="Pic 6 – Deep Teal"></div>
-        <div class="bg-swatch sw7" data-bg="bg-7" title="Pic 7 – Midnight"></div>
+        <div class="bg-swatch sw7" data-bg="bg-7" title="Pic 7 – Purple Night Sky ✦"></div>
         <div class="bg-swatch sw8" data-bg="bg-8" title="Pic 8 – Lavender Sky"></div>
       </div>
     </div>
 
-    <div class="top-bar-section" style="flex-direction: column; align-items: flex-end; gap: 4px;">
+    <div class="top-bar-section spotify-section">
       <div class="spotify-row">
         <label>♫</label>
-        <input type="text" class="spotify-input" id="spotifyInput" placeholder="Paste Spotify playlist URL…">
-        <button class="spotify-btn" onclick="openSpotify()">▶ Play</button>
+        <input type="text" class="spotify-input" id="spotifyInput" placeholder="Paste Spotify URL…">
+        <button class="sp-play-btn" onclick="loadSpotify()">▶ Play</button>
+        <button class="sp-clear-btn" onclick="clearSpotify()" title="Remove player">✕</button>
       </div>
-      <div class="spotify-link-display" id="spotifyDisplay">
-        Now playing: <a id="spotifyLink" href="#" target="_blank">Open playlist ↗</a>
-      </div>
+      <div class="sp-hint">Paste any playlist, album, or track link</div>
     </div>
 
     <div class="date-display" id="dateDisplay"></div>
   </div>
 
+  <!-- SPOTIFY INLINE PLAYER -->
+  <div class="spotify-panel" id="spotifyPanel">
+    <div class="spotify-panel-label">♫ Now playing inline</div>
+    <iframe id="spotifyIframe" src="" height="152"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy"></iframe>
+  </div>
+
   <!-- POMODORO -->
   <div class="pomo-global">
-    <div class="pomo-progress-ring">
+    <div class="pomo-ring">
       <svg width="56" height="56" viewBox="0 0 56 56">
         <circle class="pomo-ring-bg" cx="28" cy="28" r="24"/>
         <circle class="pomo-ring-fg" id="pomoRingFg" cx="28" cy="28" r="24"
           stroke-dasharray="150.8" stroke-dashoffset="0"/>
       </svg>
-      <div class="pomo-ring-label" id="pomoRingLabel">—</div>
+      <div class="pomo-ring-lbl" id="pomoRingLbl">—</div>
     </div>
     <div>
       <div class="pomo-title">Pomodoro Timer</div>
@@ -420,7 +542,7 @@
         <option value="15">Break 15 min</option>
         <option value="custom">Custom…</option>
       </select>
-      <input type="number" id="customMins" class="pomo-select" style="width:64px;display:none;" placeholder="min" min="1" max="120" onchange="applyCustom()">
+      <input type="number" id="customMins" class="pomo-select" style="width:64px;display:none;" placeholder="min" min="1" max="120" onchange="applyCustomMins()">
       <button class="pomo-btn primary" id="pomoStartBtn" onclick="togglePomo()">Start</button>
       <button class="pomo-btn" onclick="resetPomo()">Reset</button>
     </div>
@@ -431,283 +553,258 @@
     <h2>📚 My Schedule</h2>
     <button class="save-btn" id="saveBtn" onclick="saveData()">Save ✓</button>
   </div>
-
   <div class="periods-grid" id="periodsGrid"></div>
 
-  <div class="footer">
-    <span>Study Space · Made with ♡ · All data saved locally in your browser</span>
-  </div>
+  <div class="footer">All data saved in your browser ✦ Study Space</div>
 </div>
 
 <div class="notif" id="notif"></div>
 
 <script>
 // ── DATA ──
-const PERIOD_NAMES = ['Period 1','Period 2','Period 3','Period 4','Period 5','Period 6','Period 7'];
-let data = JSON.parse(localStorage.getItem('studyspace') || 'null') || {
-  bg: 'bg-1',
-  spotify: '',
-  periods: PERIOD_NAMES.map((p,i) => ({
-    label: p,
-    className: '', teacher: '', timeStart: '', timeEnd: '',
-    notes: '', todos: []
+let data = JSON.parse(localStorage.getItem('studyspace_v3')||'null') || {
+  bg:'bg-1', spotify:'',
+  periods: Array.from({length:7},(_,i)=>({
+    className:'', teacher:'', timeStart:'', timeEnd:'', notes:'', todos:[]
   }))
 };
 
-// ── BG ──
-function applyBg(bg) {
+// ── BACKGROUND ──
+function applyBg(bg){
   document.body.className = bg;
-  document.querySelectorAll('.bg-swatch').forEach(s => s.classList.remove('active'));
-  document.querySelector(`[data-bg="${bg}"]`)?.classList.add('active');
+  document.querySelectorAll('.bg-swatch').forEach(s=>s.classList.toggle('active',s.dataset.bg===bg));
   data.bg = bg;
+  if(bg==='bg-7') drawStars(); else clearStars();
 }
-document.querySelectorAll('.bg-swatch').forEach(s => {
-  s.addEventListener('click', () => { applyBg(s.dataset.bg); saveData(true); });
-  s.title = s.title; // keep title for tooltip
-});
+document.querySelectorAll('.bg-swatch').forEach(s=>
+  s.addEventListener('click',()=>{ applyBg(s.dataset.bg); saveData(true); })
+);
 applyBg(data.bg);
 
-// ── DATE ──
-function updateDate() {
-  const now = new Date();
-  document.getElementById('dateDisplay').textContent =
-    now.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'}) +
-    ' · ' + now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+// ── STARS ──
+function drawStars(){
+  const c=document.getElementById('starsCanvas');
+  c.width=window.innerWidth; c.height=window.innerHeight;
+  const ctx=c.getContext('2d');
+  for(let i=0;i<240;i++){
+    const x=Math.random()*c.width, y=Math.random()*c.height, r=Math.random()*1.5+0.2;
+    ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(255,255,255,${0.3+Math.random()*0.7})`; ctx.fill();
+  }
+  // a few colored stars
+  ['#c084fc','#818cf8','#a5f3fc'].forEach(col=>{
+    for(let i=0;i<12;i++){
+      const x=Math.random()*c.width, y=Math.random()*c.height;
+      ctx.beginPath(); ctx.arc(x,y,Math.random()*1.2+0.5,0,Math.PI*2);
+      ctx.fillStyle=col; ctx.fill();
+    }
+  });
 }
-updateDate(); setInterval(updateDate, 10000);
+function clearStars(){
+  const c=document.getElementById('starsCanvas');
+  const ctx=c.getContext('2d'); if(ctx) ctx.clearRect(0,0,c.width,c.height);
+}
+window.addEventListener('resize',()=>{ if(data.bg==='bg-7') drawStars(); });
+
+// ── DATE ──
+function updateDate(){
+  document.getElementById('dateDisplay').textContent =
+    new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'})+
+    ' · '+new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+}
+updateDate(); setInterval(updateDate,15000);
 
 // ── SPOTIFY ──
-document.getElementById('spotifyInput').value = data.spotify || '';
-if (data.spotify) showSpotifyDisplay(data.spotify);
-function openSpotify() {
-  let url = document.getElementById('spotifyInput').value.trim();
-  if (!url) { showNotif('Paste a Spotify URL first!'); return; }
-  if (!url.startsWith('http')) url = 'https://' + url;
-  data.spotify = url; saveData(true);
-  showSpotifyDisplay(url);
-  window.open(url, '_blank');
+document.getElementById('spotifyInput').value = data.spotify||'';
+if(data.spotify) renderSpotify(data.spotify);
+
+function loadSpotify(){
+  let url=document.getElementById('spotifyInput').value.trim();
+  if(!url){ showNotif('Paste a Spotify URL first!'); return; }
+  data.spotify=url; saveData(true);
+  renderSpotify(url);
 }
-function showSpotifyDisplay(url) {
-  const d = document.getElementById('spotifyDisplay');
-  const a = document.getElementById('spotifyLink');
-  d.style.display = 'block'; a.href = url;
+function renderSpotify(url){
+  let embedUrl=url;
+  const m=url.match(/spotify\.com\/(playlist|track|album|show|episode)\/([a-zA-Z0-9]+)/);
+  if(m) embedUrl=`https://open.spotify.com/embed/${m[1]}/${m[2]}?utm_source=generator&theme=0`;
+  else if(url.startsWith('spotify:')){
+    const p=url.split(':');
+    if(p.length>=3) embedUrl=`https://open.spotify.com/embed/${p[1]}/${p[2]}?utm_source=generator&theme=0`;
+  }
+  document.getElementById('spotifyIframe').src=embedUrl;
+  document.getElementById('spotifyPanel').classList.add('open');
+  showNotif('♫ Spotify loaded!');
+}
+function clearSpotify(){
+  document.getElementById('spotifyIframe').src='';
+  document.getElementById('spotifyPanel').classList.remove('open');
+  document.getElementById('spotifyInput').value='';
+  data.spotify=''; saveData(true);
 }
 
 // ── PERIODS ──
-function buildPeriods() {
-  const grid = document.getElementById('periodsGrid');
-  grid.innerHTML = '';
-  data.periods.forEach((p, i) => {
-    const card = document.createElement('div');
-    card.className = 'period-card';
-    card.innerHTML = `
+function esc(s){ return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function buildPeriods(){
+  const grid=document.getElementById('periodsGrid');
+  grid.innerHTML='';
+  data.periods.forEach((p,i)=>{
+    const card=document.createElement('div');
+    card.className='period-card';
+    card.innerHTML=`
       <div class="period-top">
         <span class="period-badge">Period ${i+1}</span>
         <div class="period-pomo-mini">
-          <span class="mini-timer" id="miniTimer${i}">25:00</span>
-          <button class="mini-btn" id="miniBtn${i}" onclick="toggleMiniPomo(${i})">▶ Focus</button>
+          <span class="mini-timer" id="mt${i}">25:00</span>
+          <button class="mini-btn" id="mb${i}" onclick="toggleMini(${i})">▶ Focus</button>
         </div>
       </div>
-      <input class="class-name-input" type="text" placeholder="Class name…" data-field="className" data-idx="${i}"
-        value="${esc(p.className)}">
+      <input class="class-name-input" type="text" placeholder="Class name…" data-field="className" data-idx="${i}" value="${esc(p.className)}">
       <div class="time-row">
         <span class="time-label">From</span>
         <input class="time-input" type="time" data-field="timeStart" data-idx="${i}" value="${p.timeStart}">
         <span class="time-label">to</span>
         <input class="time-input" type="time" data-field="timeEnd" data-idx="${i}" value="${p.timeEnd}">
       </div>
-      <input class="teacher-input" type="text" placeholder="Teacher / room…" data-field="teacher" data-idx="${i}"
-        value="${esc(p.teacher)}">
+      <input class="teacher-input" type="text" placeholder="Teacher / room…" data-field="teacher" data-idx="${i}" value="${esc(p.teacher)}">
       <div>
-        <div class="notes-label">Notes & Homework</div>
+        <div class="notes-label">Notes &amp; Homework</div>
         <textarea class="notes-area" placeholder="Write anything you need to remember…" data-field="notes" data-idx="${i}">${esc(p.notes)}</textarea>
       </div>
-      <div class="todo-section" id="todos${i}"></div>
+      <div class="todo-section" id="td${i}"></div>
       <button class="add-todo-btn" onclick="addTodo(${i})">+ Add task</button>
     `;
     grid.appendChild(card);
     renderTodos(i);
   });
-
-  // live input → save
-  grid.querySelectorAll('[data-field]').forEach(el => {
-    el.addEventListener('input', () => {
-      const idx = +el.dataset.idx, field = el.dataset.field;
-      data.periods[idx][field] = el.value;
-    });
-    el.addEventListener('blur', () => saveData(true));
+  grid.querySelectorAll('[data-field]').forEach(el=>{
+    el.addEventListener('input',()=>{ data.periods[+el.dataset.idx][el.dataset.field]=el.value; });
+    el.addEventListener('blur',()=>saveData(true));
   });
 }
 
-function esc(str) {
-  return (str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
-// ── TODOS ──
-function renderTodos(idx) {
-  const container = document.getElementById(`todos${idx}`);
-  if (!container) return;
-  container.innerHTML = '';
-  (data.periods[idx].todos||[]).forEach((t,ti) => {
-    const row = document.createElement('div');
-    row.className = 'todo-row';
-    row.innerHTML = `
+function renderTodos(idx){
+  const c=document.getElementById(`td${idx}`); if(!c) return;
+  c.innerHTML='';
+  (data.periods[idx].todos||[]).forEach((t,ti)=>{
+    const row=document.createElement('div'); row.className='todo-row';
+    row.innerHTML=`
       <input type="checkbox" class="todo-check" ${t.done?'checked':''} onchange="toggleTodo(${idx},${ti})">
       <input type="text" class="todo-text ${t.done?'done':''}" placeholder="Task…"
         value="${esc(t.text)}" oninput="editTodo(${idx},${ti},this.value)" onblur="saveData(true)">
-      <button class="todo-del" onclick="delTodo(${idx},${ti})">✕</button>
-    `;
-    container.appendChild(row);
+      <button class="todo-del" onclick="delTodo(${idx},${ti})">✕</button>`;
+    c.appendChild(row);
   });
 }
-function addTodo(idx) {
-  data.periods[idx].todos = data.periods[idx].todos || [];
+function addTodo(idx){
+  data.periods[idx].todos=data.periods[idx].todos||[];
   data.periods[idx].todos.push({text:'',done:false});
   renderTodos(idx); saveData(true);
-  const inputs = document.getElementById(`todos${idx}`).querySelectorAll('.todo-text');
-  if (inputs.length) inputs[inputs.length-1].focus();
+  const inputs=document.getElementById(`td${idx}`).querySelectorAll('.todo-text');
+  if(inputs.length) inputs[inputs.length-1].focus();
 }
-function toggleTodo(idx,ti) {
-  data.periods[idx].todos[ti].done = !data.periods[idx].todos[ti].done;
-  renderTodos(idx); saveData(true);
-}
-function editTodo(idx,ti,val) {
-  data.periods[idx].todos[ti].text = val;
-}
-function delTodo(idx,ti) {
-  data.periods[idx].todos.splice(ti,1);
-  renderTodos(idx); saveData(true);
-}
+function toggleTodo(idx,ti){ data.periods[idx].todos[ti].done=!data.periods[idx].todos[ti].done; renderTodos(idx); saveData(true); }
+function editTodo(idx,ti,v){ data.periods[idx].todos[ti].text=v; }
+function delTodo(idx,ti){ data.periods[idx].todos.splice(ti,1); renderTodos(idx); saveData(true); }
 
 // ── GLOBAL POMODORO ──
-let pomoInterval = null;
-let pomoSecondsLeft = 25*60;
-let pomoTotalSeconds = 25*60;
-let pomoRunning = false;
-const CIRC = 2 * Math.PI * 24; // 150.796…
-
-function setPomoMode() {
-  const val = document.getElementById('pomoModeSelect').value;
-  document.getElementById('customMins').style.display = val === 'custom' ? 'inline-block' : 'none';
-  if (val !== 'custom') {
-    pomoSecondsLeft = parseInt(val) * 60;
-    pomoTotalSeconds = pomoSecondsLeft;
-    updatePomoDisplay();
-    if (pomoRunning) { clearInterval(pomoInterval); pomoRunning = false; document.getElementById('pomoStartBtn').textContent = 'Start'; }
+let pomoInt=null, pomoLeft=25*60, pomoTotal=25*60, pomoOn=false;
+const CIRC=150.796;
+function setPomoMode(){
+  const v=document.getElementById('pomoModeSelect').value;
+  document.getElementById('customMins').style.display=v==='custom'?'inline-block':'none';
+  if(v!=='custom'){
+    pomoLeft=parseInt(v)*60; pomoTotal=pomoLeft; updPomo();
+    if(pomoOn){ clearInterval(pomoInt); pomoOn=false; document.getElementById('pomoStartBtn').textContent='Start'; }
   }
 }
-function applyCustom() {
-  const v = parseInt(document.getElementById('customMins').value) || 25;
-  pomoSecondsLeft = v * 60; pomoTotalSeconds = v * 60;
-  updatePomoDisplay();
-}
-function togglePomo() {
-  if (pomoRunning) {
-    clearInterval(pomoInterval); pomoRunning = false;
-    document.getElementById('pomoStartBtn').textContent = 'Resume';
-    document.getElementById('pomoPhase').textContent = 'Paused';
+function applyCustomMins(){ const v=parseInt(document.getElementById('customMins').value)||25; pomoLeft=v*60; pomoTotal=v*60; updPomo(); }
+function togglePomo(){
+  if(pomoOn){ clearInterval(pomoInt); pomoOn=false;
+    document.getElementById('pomoStartBtn').textContent='Resume';
+    document.getElementById('pomoPhase').textContent='Paused';
   } else {
-    if (pomoSecondsLeft <= 0) resetPomo();
-    pomoRunning = true;
-    document.getElementById('pomoStartBtn').textContent = 'Pause';
-    document.getElementById('pomoPhase').textContent = 'Focusing…';
-    pomoInterval = setInterval(() => {
-      if (pomoSecondsLeft > 0) { pomoSecondsLeft--; updatePomoDisplay(); }
-      else { clearInterval(pomoInterval); pomoRunning = false;
-        document.getElementById('pomoStartBtn').textContent = 'Start';
-        document.getElementById('pomoPhase').textContent = 'Time\'s up! ✦';
-        playDing(); showNotif('⏰ Pomodoro complete!');
+    if(pomoLeft<=0) resetPomo();
+    pomoOn=true; document.getElementById('pomoStartBtn').textContent='Pause';
+    document.getElementById('pomoPhase').textContent='Focusing…';
+    pomoInt=setInterval(()=>{
+      if(pomoLeft>0){ pomoLeft--; updPomo(); }
+      else{ clearInterval(pomoInt); pomoOn=false;
+        document.getElementById('pomoStartBtn').textContent='Start';
+        document.getElementById('pomoPhase').textContent="Time's up! ✦";
+        ding(); showNotif('⏰ Pomodoro complete!');
       }
-    }, 1000);
+    },1000);
   }
 }
-function resetPomo() {
-  clearInterval(pomoInterval); pomoRunning = false;
-  const val = document.getElementById('pomoModeSelect').value;
-  pomoSecondsLeft = (val === 'custom' ? parseInt(document.getElementById('customMins').value)||25 : parseInt(val)) * 60;
-  pomoTotalSeconds = pomoSecondsLeft;
-  document.getElementById('pomoStartBtn').textContent = 'Start';
-  document.getElementById('pomoPhase').textContent = 'Ready to focus';
-  updatePomoDisplay();
+function resetPomo(){
+  clearInterval(pomoInt); pomoOn=false;
+  const v=document.getElementById('pomoModeSelect').value;
+  pomoLeft=(v==='custom'?parseInt(document.getElementById('customMins').value)||25:parseInt(v))*60;
+  pomoTotal=pomoLeft;
+  document.getElementById('pomoStartBtn').textContent='Start';
+  document.getElementById('pomoPhase').textContent='Ready to focus';
+  updPomo();
 }
-function updatePomoDisplay() {
-  const m = String(Math.floor(pomoSecondsLeft/60)).padStart(2,'0');
-  const s = String(pomoSecondsLeft%60).padStart(2,'0');
-  document.getElementById('pomoDisplay').textContent = `${m}:${s}`;
-  const pct = pomoTotalSeconds > 0 ? pomoSecondsLeft/pomoTotalSeconds : 1;
-  const offset = CIRC * (1 - pct);
-  document.getElementById('pomoRingFg').style.strokeDashoffset = offset;
-  const minLeft = Math.ceil(pomoSecondsLeft/60);
-  document.getElementById('pomoRingLabel').textContent = minLeft <= 0 ? '✓' : minLeft+'m';
+function updPomo(){
+  const m=String(Math.floor(pomoLeft/60)).padStart(2,'0');
+  const s=String(pomoLeft%60).padStart(2,'0');
+  document.getElementById('pomoDisplay').textContent=`${m}:${s}`;
+  const pct=pomoTotal>0?pomoLeft/pomoTotal:1;
+  document.getElementById('pomoRingFg').style.strokeDashoffset=CIRC*(1-pct);
+  const ml=Math.ceil(pomoLeft/60);
+  document.getElementById('pomoRingLbl').textContent=ml<=0?'✓':ml+'m';
 }
-updatePomoDisplay();
+updPomo();
 
-// ── MINI POMODORO (per card) ──
-const miniTimers = {}; // idx → {interval, seconds, running}
-function toggleMiniPomo(idx) {
-  if (!miniTimers[idx]) {
-    miniTimers[idx] = { seconds: 25*60, total: 25*60, running: false, interval: null };
+// ── MINI TIMERS ──
+const MT={};
+function toggleMini(idx){
+  if(!MT[idx]) MT[idx]={s:25*60,on:false,iv:null};
+  const t=MT[idx]; const btn=document.getElementById(`mb${idx}`);
+  if(t.on){ clearInterval(t.iv); t.on=false; btn.textContent='▶ Focus'; btn.classList.remove('running'); }
+  else{
+    if(t.s<=0) t.s=25*60;
+    t.on=true; btn.textContent='⏸ Pause'; btn.classList.add('running');
+    t.iv=setInterval(()=>{
+      if(t.s>0){ t.s--; const el=document.getElementById(`mt${idx}`); if(el) el.textContent=String(Math.floor(t.s/60)).padStart(2,'0')+':'+String(t.s%60).padStart(2,'0'); }
+      else{ clearInterval(t.iv); t.on=false; btn.textContent='▶ Focus'; btn.classList.remove('running'); showNotif(`⏰ Period ${idx+1} done!`); ding(); }
+    },1000);
   }
-  const t = miniTimers[idx];
-  const btn = document.getElementById(`miniBtn${idx}`);
-  if (t.running) {
-    clearInterval(t.interval); t.running = false; btn.textContent = '▶ Focus'; btn.classList.remove('running');
-  } else {
-    if (t.seconds <= 0) { t.seconds = 25*60; }
-    t.running = true; btn.textContent = '⏸ Pause'; btn.classList.add('running');
-    t.interval = setInterval(() => {
-      if (t.seconds > 0) { t.seconds--; updateMiniDisplay(idx); }
-      else {
-        clearInterval(t.interval); t.running = false;
-        btn.textContent = '▶ Focus'; btn.classList.remove('running');
-        showNotif(`⏰ Period ${idx+1} focus done!`); playDing();
-      }
-    }, 1000);
-  }
-}
-function updateMiniDisplay(idx) {
-  const t = miniTimers[idx];
-  if (!t) return;
-  const m = String(Math.floor(t.seconds/60)).padStart(2,'0');
-  const s = String(t.seconds%60).padStart(2,'0');
-  const el = document.getElementById(`miniTimer${idx}`);
-  if (el) el.textContent = `${m}:${s}`;
 }
 
 // ── DING ──
-function playDing() {
-  try {
-    const ctx = new (window.AudioContext||window.webkitAudioContext)();
-    [0,0.3,0.6].forEach(delay => {
-      const o = ctx.createOscillator(); const g = ctx.createGain();
-      o.connect(g); g.connect(ctx.destination);
-      o.type = 'sine'; o.frequency.value = 880;
-      g.gain.setValueAtTime(0.4, ctx.currentTime+delay);
-      g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime+delay+0.6);
-      o.start(ctx.currentTime+delay); o.stop(ctx.currentTime+delay+0.7);
+function ding(){
+  try{
+    const ctx=new(window.AudioContext||window.webkitAudioContext)();
+    [0,0.3,0.6].forEach(d=>{
+      const o=ctx.createOscillator(),g=ctx.createGain();
+      o.connect(g); g.connect(ctx.destination); o.type='sine'; o.frequency.value=880;
+      g.gain.setValueAtTime(0.32,ctx.currentTime+d);
+      g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+d+0.6);
+      o.start(ctx.currentTime+d); o.stop(ctx.currentTime+d+0.7);
     });
-  } catch(e){}
+  }catch(e){}
 }
 
-// ── SAVE / LOAD ──
-function saveData(silent=false) {
-  localStorage.setItem('studyspace', JSON.stringify(data));
-  if (!silent) {
+// ── SAVE ──
+function saveData(silent=false){
+  localStorage.setItem('studyspace_v3',JSON.stringify(data));
+  if(!silent){
     showNotif('Saved! ✓');
-    const btn = document.getElementById('saveBtn');
-    btn.textContent = 'Saved ✓'; btn.classList.add('saved');
-    setTimeout(() => { btn.textContent = 'Save ✓'; btn.classList.remove('saved'); }, 1800);
+    const btn=document.getElementById('saveBtn');
+    btn.textContent='Saved ✓'; btn.classList.add('saved');
+    setTimeout(()=>{ btn.textContent='Save ✓'; btn.classList.remove('saved'); },1800);
   }
 }
 
-// ── NOTIF ──
-function showNotif(msg) {
-  const el = document.getElementById('notif');
-  el.textContent = msg; el.classList.add('show');
-  setTimeout(() => el.classList.remove('show'), 2600);
+function showNotif(msg){
+  const el=document.getElementById('notif');
+  el.textContent=msg; el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'),2600);
 }
 
-// ── INIT ──
 buildPeriods();
 </script>
 </body>
