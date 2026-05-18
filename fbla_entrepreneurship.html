@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FBLA Entrepreneurship — Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0f14;
+    --surface: #13161e;
+    --surface2: #1a1e2a;
+    --border: rgba(255,255,255,0.07);
+    --gold: #f0c060;
+    --gold2: #e8a020;
+    --teal: #38d9c0;
+    --rose: #f06080;
+    --lavender: #a088f8;
+    --text: #e8eaf0;
+    --muted: #7a8099;
+    --radius: 14px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(240,192,96,0.13) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 50% at 80% 80%, rgba(56,217,192,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 20% 70%, rgba(160,136,248,0.07) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(240,192,96,0.12);
+    border: 1px solid rgba(240,192,96,0.3);
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 999px;
+    margin-bottom: 32px;
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--muted);
+    font-weight: 300;
+    max-width: 540px;
+    margin: 0 auto 48px;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+
+  .hero-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+
+  .hero-nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+
+  .hero-nav a:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(240,192,96,0.07);
+    transform: translateY(-2px);
+  }
+
+  .hero-nav a .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    animation: bounce 2s infinite;
+  }
+
+  /* ── LAYOUT ── */
+  .main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 24px 120px;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    margin-bottom: 80px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .section.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 4vw, 36px);
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .card:hover {
+    border-color: rgba(255,255,255,0.13);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+  }
+
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .card p, .card li {
+    color: #b0b8cc;
+    font-size: 15px;
+  }
+
+  .card ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 12px;
+  }
+
+  .card ul li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 5px 0;
+  }
+
+  .card ul li::before {
+    content: '›';
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.4;
+    flex-shrink: 0;
+  }
+
+  /* ── TWO-COL GRID ── */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  @media (max-width: 680px) {
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+
+  /* ── PRO/CON ── */
+  .pros-cons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 14px;
+  }
+
+  @media (max-width: 560px) {
+    .pros-cons { grid-template-columns: 1fr; }
+  }
+
+  .pros, .cons {
+    border-radius: 10px;
+    padding: 16px;
+  }
+
+  .pros {
+    background: rgba(56,217,192,0.07);
+    border: 1px solid rgba(56,217,192,0.2);
+  }
+
+  .cons {
+    background: rgba(240,96,128,0.07);
+    border: 1px solid rgba(240,96,128,0.2);
+  }
+
+  .pros-label {
+    color: var(--teal);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  .cons-label {
+    color: var(--rose);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  .pros ul li::before { color: var(--teal); }
+  .cons ul li::before { color: var(--rose); }
+
+  /* ── PILL TAGS ── */
+  .tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin: 2px 3px;
+  }
+
+  /* ── FORMULA BOX ── */
+  .formula {
+    font-family: 'DM Mono', monospace;
+    font-size: 15px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    padding: 14px 20px;
+    border-radius: 8px;
+    margin: 12px 0;
+    color: var(--gold);
+    letter-spacing: 0.03em;
+  }
+
+  /* ── TABLE ── */
+  .styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-top: 16px;
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .styled-table th {
+    background: var(--surface2);
+    color: var(--gold);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .styled-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: #b0b8cc;
+    vertical-align: top;
+  }
+
+  .styled-table tr:last-child td { border-bottom: none; }
+
+  .styled-table tr:hover td {
+    background: rgba(255,255,255,0.02);
+  }
+
+  /* ── CALLOUT ── */
+  .callout {
+    display: flex;
+    gap: 14px;
+    background: rgba(240,192,96,0.07);
+    border: 1px solid rgba(240,192,96,0.2);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+
+  .callout-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+
+  .callout p { color: #b8c0d0; font-size: 14px; }
+  .callout strong { color: var(--gold); }
+
+  /* ── STEP LIST ── */
+  .step-list { list-style: none; counter-reset: steps; }
+
+  .step-list li {
+    counter-increment: steps;
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+  }
+
+  .step-list li::before {
+    content: counter(steps);
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: #0d0f14;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-list li div { color: #b0b8cc; font-size: 15px; }
+  .step-list li strong { color: var(--text); display: block; margin-bottom: 3px; }
+
+  /* ── HIGHLIGHT ── */
+  .highlight { color: var(--gold); font-weight: 600; }
+  .highlight-teal { color: var(--teal); font-weight: 600; }
+  .highlight-rose { color: var(--rose); font-weight: 600; }
+  .highlight-lav { color: var(--lavender); font-weight: 600; }
+
+  /* ── QUIZ ── */
+  .quiz-section {
+    background: linear-gradient(135deg, rgba(240,192,96,0.06), rgba(160,136,248,0.04));
+    border: 1px solid rgba(240,192,96,0.2);
+    border-radius: 20px;
+    padding: 40px;
+    margin: 60px 0;
+    text-align: center;
+  }
+
+  .quiz-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+
+  .quiz-section p { color: var(--muted); margin-bottom: 28px; }
+
+  #quiz-area { text-align: left; }
+
+  .q-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  .q-text {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  .q-options { display: flex; flex-direction: column; gap: 8px; }
+
+  .q-opt {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text);
+    transition: all 0.2s;
+    text-align: left;
+  }
+
+  .q-opt:hover:not(.answered) {
+    border-color: var(--gold);
+    background: rgba(240,192,96,0.06);
+  }
+
+  .q-opt.correct {
+    border-color: var(--teal);
+    background: rgba(56,217,192,0.1);
+    color: var(--teal);
+  }
+
+  .q-opt.wrong {
+    border-color: var(--rose);
+    background: rgba(240,96,128,0.1);
+    color: var(--rose);
+  }
+
+  .q-feedback {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--muted);
+    display: none;
+  }
+
+  .q-feedback.show { display: block; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gold);
+    color: #0d0f14;
+    border: none;
+    border-radius: var(--radius);
+    padding: 14px 28px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .btn:hover {
+    background: var(--gold2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(240,192,96,0.3);
+  }
+
+  .score-display {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    color: var(--gold);
+    margin: 20px 0 8px;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    padding: 40px 24px;
+    color: var(--muted);
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* ── SWOT GRID ── */
+  .swot-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 14px;
+  }
+
+  .swot-cell {
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .swot-cell h4 {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .swot-cell ul { list-style: none; }
+  .swot-cell ul li { font-size: 13px; color: #a0a8bc; padding: 3px 0; }
+  .swot-cell ul li::before { content: '• '; }
+
+  .swot-s { background: rgba(56,217,192,0.08); border: 1px solid rgba(56,217,192,0.2); }
+  .swot-s h4 { color: var(--teal); }
+  .swot-w { background: rgba(240,96,128,0.08); border: 1px solid rgba(240,96,128,0.2); }
+  .swot-w h4 { color: var(--rose); }
+  .swot-o { background: rgba(240,192,96,0.08); border: 1px solid rgba(240,192,96,0.2); }
+  .swot-o h4 { color: var(--gold); }
+  .swot-t { background: rgba(160,136,248,0.08); border: 1px solid rgba(160,136,248,0.2); }
+  .swot-t h4 { color: var(--lavender); }
+
+  /* ── ECON CARDS ── */
+  .econ-card {
+    border-radius: var(--radius);
+    padding: 24px;
+    border: 1px solid var(--border);
+    margin-bottom: 12px;
+  }
+
+  .econ-card h3 { font-size: 18px; margin-bottom: 8px; }
+  .econ-card p { font-size: 14px; color: #9aa0b8; }
+  .econ-card .example { font-size: 12px; margin-top: 8px; font-style: italic; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">📘 FBLA Competitive Events</div>
+  <h1>Entrepreneurship<br><em>Study Guide</em></h1>
+  <p class="hero-sub">Everything you need to ace the FBLA Entrepreneurship Objective Test — explained clearly from the ground up.</p>
+
+  <nav class="hero-nav">
+    <a href="#financing"><span class="dot" style="background:#f0c060"></span>Financing</a>
+    <a href="#statements"><span class="dot" style="background:#38d9c0"></span>Financial Statements</a>
+    <a href="#laws"><span class="dot" style="background:#f06080"></span>Laws & Regulations</a>
+    <a href="#bizplan"><span class="dot" style="background:#a088f8"></span>Business Plan</a>
+    <a href="#biztypes"><span class="dot" style="background:#f0c060"></span>Business Types</a>
+    <a href="#marketing"><span class="dot" style="background:#38d9c0"></span>Marketing</a>
+    <a href="#taxes"><span class="dot" style="background:#f06080"></span>Taxes</a>
+    <a href="#econ"><span class="dot" style="background:#a088f8"></span>Economics</a>
+    <a href="#misc"><span class="dot" style="background:#f0c060"></span>Key Terms</a>
+    <a href="#quiz">🧠 Quiz Me</a>
+  </nav>
+
+  <div class="scroll-hint">↓ scroll to begin</div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+  <!-- ── 1. FINANCING ── -->
+  <div class="section" id="financing">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(240,192,96,0.12);">💰</div>
+      <div>
+        <div class="section-label" style="color:var(--gold)">Module 01</div>
+        <div class="section-title">Initial Capital & Credit</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">💡</div>
+      <div><p>There are two fundamental ways to fund a business: <strong>debt financing</strong> (borrowing money you must repay) and <strong>equity financing</strong> (selling ownership for cash). Understanding the tradeoffs is essential for any entrepreneur.</p></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3 style="color:var(--teal)">Debt Financing</h3>
+        <p>You borrow money and agree to repay it within a set timeframe at a set interest rate. You owe the money <em>regardless</em> of whether your business succeeds.</p>
+        <ul style="margin-top:14px">
+          <li>Bank loans (micro to six-figure)</li>
+          <li>Credit cards (30–60 day float)</li>
+          <li>SBA loans (government-backed)</li>
+          <li>Lines of credit</li>
+          <li>Private lending</li>
+        </ul>
+        <div class="formula" style="margin-top:16px">Interest = Principal × Rate × Time</div>
+      </div>
+      <div class="card">
+        <h3 style="color:var(--gold)">Equity Financing</h3>
+        <p>You sell partial ownership of your company in exchange for cash. Investors assume the risk — if the company fails, <em>they</em> lose money.</p>
+        <ul style="margin-top:14px">
+          <li>Friends & family</li>
+          <li>Angel investors</li>
+          <li>Venture capitalists (typically $1M+)</li>
+          <li>Selling stock / securities</li>
+        </ul>
+        <div class="callout" style="margin-top:14px; padding:12px 16px">
+          <div class="callout-icon" style="font-size:16px">⚠️</div>
+          <p style="font-size:13px"><strong>Key trade-off:</strong> Equity costs more if your company succeeds (shared profits), but less if it fails (no repayment obligation).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3>All Funding Sources at a Glance</h3>
+      <table class="styled-table">
+        <thead>
+          <tr><th>Source</th><th>Type</th><th>Key Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Friends & Family</td><td><span class="tag" style="background:rgba(240,192,96,0.15);color:var(--gold)">Both</span></td><td>Less stringent; still structure it legally for protection</td></tr>
+          <tr><td>Credit Cards</td><td><span class="tag" style="background:rgba(56,217,192,0.15);color:var(--teal)">Debt</span></td><td>Good for short-term cash flow; dangerous for long-term financing</td></tr>
+          <tr><td>Bank Loans</td><td><span class="tag" style="background:rgba(56,217,192,0.15);color:var(--teal)">Debt</span></td><td>Easier with collateral (home equity, IRA) or co-signers</td></tr>
+          <tr><td>SBA Loans</td><td><span class="tag" style="background:rgba(56,217,192,0.15);color:var(--teal)">Debt</span></td><td>Government-backed; MicroLoan, 7(a), 504 programs</td></tr>
+          <tr><td>Leasing</td><td><span class="tag" style="background:rgba(56,217,192,0.15);color:var(--teal)">Debt</span></td><td>Best for equipment, vehicles, computers</td></tr>
+          <tr><td>Angel Investors</td><td><span class="tag" style="background:rgba(240,192,96,0.15);color:var(--gold)">Equity</span></td><td>Fill gap between F&F and VCs; deals under $1M</td></tr>
+          <tr><td>Venture Capital</td><td><span class="tag" style="background:rgba(240,192,96,0.15);color:var(--gold)">Equity</span></td><td>Rarely invest below $1M; high expectations for growth</td></tr>
+          <tr><td>Private Lending</td><td><span class="tag" style="background:rgba(56,217,192,0.15);color:var(--teal)">Debt</span></td><td>Alternative when banks say no; industry specialists</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── 2. FINANCIAL STATEMENTS ── -->
+  <div class="section" id="statements">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(56,217,192,0.12);">📊</div>
+      <div>
+        <div class="section-label" style="color:var(--teal)">Module 02</div>
+        <div class="section-title">Financial Statements</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="color:var(--teal)">Balance Sheet — "The Snapshot"</h3>
+      <p>Shows a company's financial position at a <em>single point in time</em>. Think of it as a photograph of what you own and owe right now.</p>
+      <div class="formula">Assets = Liabilities + Equity</div>
+      <div class="grid-2" style="margin-top:16px">
+        <div>
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px">Assets</div>
+          <div style="font-size:13px;color:#9aa0b8;margin-bottom:4px"><strong style="color:var(--text)">Fixed Assets:</strong> Land, buildings, equipment</div>
+          <div style="font-size:13px;color:#9aa0b8"><strong style="color:var(--text)">Current Assets:</strong> Cash, accounts receivable, inventory, notes receivable, marketable securities</div>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--rose);margin-bottom:8px">Liabilities</div>
+          <div style="font-size:13px;color:#9aa0b8;margin-bottom:8px">Accounts payable, notes payable, interest payable, wages payable, taxes payable</div>
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--lavender);margin-bottom:4px">Equity</div>
+          <div style="font-size:13px;color:#9aa0b8">Stocks, retained earnings — change in equity essentially = income</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3 style="color:var(--gold)">Income Statement</h3>
+        <p>Shows results of operations over a <em>period of time</em> (month, quarter, year).</p>
+        <div class="formula">Net Income = Revenue − Expenses</div>
+        <ul>
+          <li>Revenue = money flowing in</li>
+          <li>Expenses = money flowing out</li>
+          <li>Tells investors whether the business is profitable</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="color:var(--lavender)">Cash Flow Statement</h3>
+        <p>A company can be profitable but still run out of cash. This statement tracks actual cash movement.</p>
+        <ul>
+          <li><strong>Operating activities</strong> — day-to-day operations</li>
+          <li><strong>Investing activities</strong> — buying/selling assets</li>
+          <li><strong>Financing activities</strong> — loans, equity</li>
+        </ul>
+        <div style="margin-top:12px; font-size:13px; color:var(--muted)">💡 Improve it by: decreasing accounts receivable, increasing revenue, decreasing expenses</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 3. LAWS ── -->
+  <div class="section" id="laws">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(240,96,128,0.12);">⚖️</div>
+      <div>
+        <div class="section-label" style="color:var(--rose)">Module 03</div>
+        <div class="section-title">Government Laws & Regulations</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Key Federal Laws</h3>
+      <table class="styled-table">
+        <thead>
+          <tr><th>Law</th><th>What It Does</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Sherman Antitrust Act</strong></td><td>Prohibits monopolies and anti-competitive practices</td></tr>
+          <tr><td><strong>Clayton Act</strong></td><td>Bans tying arrangements — forcing customers to buy one product with another</td></tr>
+          <tr><td><strong>Robinson-Patman Act</strong></td><td>Prohibits price discrimination against customers</td></tr>
+          <tr><td><strong>Wheeler-Lea Act</strong></td><td>Outlaws deceptive and false advertising</td></tr>
+          <tr><td><strong>Fair Labor Standards Act</strong></td><td>Establishes federal minimum wage requirements</td></tr>
+          <tr><td><strong>OSHA (Safety & Health Act 1970)</strong></td><td>Requires safe and sanitary work environments</td></tr>
+          <tr><td><strong>ERISA</strong></td><td>Guarantees employee retirement and health plan benefits</td></tr>
+          <tr><td><strong>Immigration & Nationality Act</strong></td><td>Only US citizens or work-visa holders may be employed; I-9 forms required</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3>Regulatory Agencies</h3>
+      <div class="grid-2">
+        <div>
+          <ul>
+            <li><span class="highlight">FDA</span> — ensures safety of food and drugs</li>
+            <li><span class="highlight">FCC</span> — regulates broadcast signals (TV, radio)</li>
+            <li><span class="highlight">FTC</span> — protects consumers from unfair practices</li>
+            <li><span class="highlight">CPSC</span> — regulates consumer products not covered by others (created 1972)</li>
+          </ul>
+        </div>
+        <div>
+          <ul>
+            <li><span class="highlight">SBA</span> — Small Business Administration; provides loans through partnering banks; manages MicroLoan, 504, and 7(a) programs</li>
+            <li>Government also regulates: <em>advertising</em>, <em>employment/labor</em>, <em>environment</em>, <em>privacy</em></li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout" style="margin-top:16px">
+        <div class="callout-icon">📢</div>
+        <div><p>Advertising rules: ads must be <strong>truthful</strong>, <strong>not misleading</strong>, backed by evidence, and <strong>fair to competitors and consumers</strong>.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 4. BUSINESS PLAN ── -->
+  <div class="section" id="bizplan">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(160,136,248,0.12);">📋</div>
+      <div>
+        <div class="section-label" style="color:var(--lavender)">Module 04</div>
+        <div class="section-title">The Business Plan</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">📌</div>
+      <div><p>A business plan is a <strong>written document outlining a company's future and goals</strong>. Entrepreneurs use it to communicate their vision to potential investors and guide decision-making.</p></div>
+    </div>
+
+    <ol class="step-list">
+      <li>
+        <div>
+          <strong>Executive Summary</strong>
+          Written last but appears first. Covers: mission statement, company info (who/when/where), product overview, growth highlights, current investors, funding sought, and future plans.
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Company Description</strong>
+          High-level review of the business and market. Explains how your product meets customer needs, who your target market is, and what your competitive advantages are.
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Market Analysis</strong>
+          Demonstrates industry research. Covers: industry description & outlook, target market details, distinguishing characteristics, market size & forecasted growth, market share, pricing strategy, competitive analysis, and regulatory requirements.
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Organization & Management</strong>
+          Covers organizational structure, ownership details (names, percentages, forms), management profiles (resumes), Board of Directors qualifications, salaries, and the <em>legal structure</em> of the business (LLC, corp, partnership, etc.).
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Service or Product Line</strong>
+          Describes specific benefits of your product/service, development stage, product lifecycle, patents/copyrights, and any R&D activity.
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Marketing & Sales</strong>
+          Covers market penetration strategy, growth strategy, channels of distribution, and communication strategy (how you reach customers).
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Funding Request</strong> <em style="color:var(--muted)">(if applicable)</em>
+          States current and future funding needs and how funds will be used.
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Financial Projections</strong>
+          Historical data (income statements, balance sheets, cash flow) + forecasted data + ratio and trend analysis.
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Appendix</strong>
+          Credit history, resumes, product photos, letters of reference, market studies, licenses, permits, patents, legal documents, contracts, leases.
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <!-- ── 5. BUSINESS TYPES ── -->
+  <div class="section" id="biztypes">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(240,192,96,0.12);">🏢</div>
+      <div>
+        <div class="section-label" style="color:var(--gold)">Module 05</div>
+        <div class="section-title">Types of Business Structures</div>
+      </div>
+    </div>
+
+    <!-- Sole Prop -->
+    <div class="card">
+      <h3>Sole Proprietorship</h3>
+      <p>The most common business form. One owner, minimal setup. The owner <em>is</em> the business legally.</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <div class="pros-label">✓ Pros</div>
+          <ul>
+            <li>Very inexpensive and easy to start</li>
+            <li>Only need to register name + local licenses</li>
+            <li>Can freely mix business and personal assets</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <div class="cons-label">✗ Cons</div>
+          <ul>
+            <li><strong style="color:var(--rose)">Personally liable</strong> for company debts</li>
+            <li>Rarely survives the owner's death</li>
+            <li>Cannot sell shares in the company</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Partnership -->
+    <div class="card">
+      <h3>Partnership</h3>
+      <p>Two or more people form a company, formally (with documents) or informally (on a handshake). Also includes <strong>Limited Partnerships</strong> where some partners have limited liability and limited input — popular with short-term investors.</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <div class="pros-label">✓ Pros</div>
+          <ul>
+            <li>Relatively inexpensive to start</li>
+            <li>No minimum tax (unlike corps/LLCs)</li>
+            <li>More capital & knowledge from multiple partners</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <div class="cons-label">✗ Cons</div>
+          <ul>
+            <li>All owners <strong style="color:var(--rose)">personally liable</strong> for debts</li>
+            <li>Must deal with partners' decisions</li>
+            <li>Handshake deals can cause conflict</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- C Corp -->
+    <div class="card">
+      <h3>C Corporation</h3>
+      <p>The main corporate form in the US. Has the legal power of a person — can be sued, commit crimes, file lawsuits, own property.</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <div class="pros-label">✓ Pros</div>
+          <ul>
+            <li>Owners protected from personal liability</li>
+            <li>Can go public easily</li>
+            <li>Raise capital via securities</li>
+            <li>Transfer ownership via shares</li>
+            <li>Unlimited lifetime</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <div class="cons-label">✗ Cons</div>
+          <ul>
+            <li>Most expensive to set up</li>
+            <li>Annual meetings + many formalities</li>
+            <li>Annual fees and state filings</li>
+            <li><strong style="color:var(--rose)">Double taxation</strong> (corporate + dividend)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- S Corp -->
+    <div class="card">
+      <h3>S Corporation</h3>
+      <p>A special election of corporation. Requirements: <em>one class of stock</em>, <em>fewer than 100 shareholders</em>, all shareholders must be US citizens (certain nonprofits can also hold shares).</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <div class="pros-label">✓ Pros</div>
+          <ul>
+            <li>Eliminates <strong style="color:var(--teal)">double taxation</strong></li>
+            <li>Owners protected from personal liability</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <div class="cons-label">✗ Cons</div>
+          <ul>
+            <li>All officers/owners <em>must</em> take a salary</li>
+            <li>Annual fees and state filings required</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- LLC -->
+    <div class="card">
+      <h3>Limited Liability Company (LLC)</h3>
+      <p>The newest corporate form (1960s–1980s depending on state). Combines partnership simplicity with corporate tax benefits.</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <div class="pros-label">✓ Pros</div>
+          <ul>
+            <li>Few ongoing formalities (no annual meetings)</li>
+            <li>Owners protected from personal liability</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <div class="cons-label">✗ Cons</div>
+          <ul>
+            <li>Hard to go public (must convert to corp first)</li>
+            <li>More expensive than partnerships</li>
+            <li>Annual fees and state filings</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Compare -->
+    <div class="card" style="margin-top:8px">
+      <h3>Quick Comparison Table</h3>
+      <table class="styled-table">
+        <thead>
+          <tr><th>Structure</th><th>Personal Liability</th><th>Double Tax</th><th>Go Public</th><th>Complexity</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Sole Proprietorship</td><td><span style="color:var(--rose)">Yes ❌</span></td><td>No</td><td>No</td><td>Very Low</td></tr>
+          <tr><td>Partnership</td><td><span style="color:var(--rose)">Yes ❌</span></td><td>No</td><td>No</td><td>Low</td></tr>
+          <tr><td>C Corporation</td><td><span style="color:var(--teal)">No ✓</span></td><td><span style="color:var(--rose)">Yes ❌</span></td><td>Easy ✓</td><td>High</td></tr>
+          <tr><td>S Corporation</td><td><span style="color:var(--teal)">No ✓</span></td><td><span style="color:var(--teal)">No ✓</span></td><td>Moderate</td><td>Medium</td></tr>
+          <tr><td>LLC</td><td><span style="color:var(--teal)">No ✓</span></td><td>No</td><td>Hard</td><td>Medium</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── 6. ETHICS ── -->
+  <div class="section" id="ethics">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(56,217,192,0.12);">🧭</div>
+      <div>
+        <div class="section-label" style="color:var(--teal)">Module 06</div>
+        <div class="section-title">Business Ethics</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">⚖️</div>
+      <div><p><strong>Ethics</strong> is the study of moral choice and values — choosing between right and wrong. A written <strong>Code of Ethics</strong> defines the level of ethical behavior expected from individuals and employees.</p></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3 style="color:var(--teal)">Responsibilities to Customers</h3>
+        <ul>
+          <li>Treat all customers with respect and honesty</li>
+          <li>Never exaggerate product merits</li>
+          <li>Inform customers of applicable product dangers</li>
+          <li>Handle all disputes fairly, hearing both sides</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="color:var(--gold)">Responsibilities to Suppliers</h3>
+        <ul>
+          <li>Be fair, honest, and respectful</li>
+          <li>Give enough time to fill orders</li>
+          <li>Refuse dishonest or illegal schemes</li>
+          <li>Give a fair reason if changing suppliers</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="color:var(--lavender)">Responsibilities to Creditors/Investors</h3>
+        <ul>
+          <li>Use borrowed money with caution and care</li>
+          <li>Be honest about losses — never cover them up</li>
+          <li>Maintain transparent financial reporting</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="color:var(--rose)">Why a Written Code of Ethics?</h3>
+        <ul>
+          <li>Reminds employees of ethical importance</li>
+          <li>Defines what is considered unethical behavior</li>
+          <li>Builds trust with customers and partners</li>
+          <li>Reduces legal and reputational risk</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 7. MARKETING ── -->
+  <div class="section" id="marketing">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(56,217,192,0.12);">📣</div>
+      <div>
+        <div class="section-label" style="color:var(--teal)">Module 07</div>
+        <div class="section-title">Marketing Concepts</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3 style="color:var(--gold)">Market Penetration</h3>
+        <p>The percentage of the <em>total public</em> that uses a general product category — not limited to one brand.</p>
+        <div class="callout" style="margin-top:12px; padding:12px 16px">
+          <div class="callout-icon" style="font-size:16px">📱</div>
+          <p style="font-size:13px">Example: The % of all people who use smartphones <em>in general</em> is market penetration.</p>
+        </div>
+      </div>
+      <div class="card">
+        <h3 style="color:var(--teal)">Market Share</h3>
+        <p>A <em>single company's</em> percentage of the total market penetration.</p>
+        <div class="callout" style="margin-top:12px; padding:12px 16px">
+          <div class="callout-icon" style="font-size:16px">🍎</div>
+          <p style="font-size:13px">Example: Apple's percentage of all smartphone users = Apple's market share.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3 style="color:var(--lavender)">Market Segmentation → Target Market</h3>
+      <p>The act of dividing a broad market into sub-groups based on shared characteristics, then directing marketing resources toward the most promising group.</p>
+      <div class="grid-2" style="margin-top:16px">
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--lavender);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px">Segmentation Types</div>
+          <ul>
+            <li><strong>Demographic</strong> — age, income, education, gender</li>
+            <li><strong>Psychographic</strong> — lifestyle, values, personality</li>
+            <li><strong>Geographic</strong> — location, region, climate</li>
+            <li><strong>Behavioral</strong> — purchase habits, brand loyalty</li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px">Marketing Strategies</div>
+          <ul>
+            <li><strong>Market Penetration</strong> — grow existing market share</li>
+            <li><strong>Growth Strategy</strong> — expand the business</li>
+            <li><strong>Distribution Strategy</strong> — channels to reach customers</li>
+            <li><strong>Communication Strategy</strong> — how to reach customers</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 8. TAXES ── -->
+  <div class="section" id="taxes">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(240,96,128,0.12);">🧾</div>
+      <div>
+        <div class="section-label" style="color:var(--rose)">Module 08</div>
+        <div class="section-title">Business Taxation</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Tax Forms by Business Type</h3>
+      <table class="styled-table">
+        <thead>
+          <tr><th>Business Type</th><th>How Taxed</th><th>Forms Required</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Sole Proprietorship</td><td>Reported by owner</td><td><span class="tag" style="background:rgba(240,192,96,0.12);color:var(--gold)">Form 1040</span></td></tr>
+          <tr><td>General Partnership</td><td>Reported by owners</td><td><span class="tag" style="background:rgba(240,192,96,0.12);color:var(--gold)">Form 1065</span> + <span class="tag" style="background:rgba(240,192,96,0.12);color:var(--gold)">1040</span></td></tr>
+          <tr><td>LLC</td><td>Reported by owners</td><td><span class="tag" style="background:rgba(240,192,96,0.12);color:var(--gold)">Form 1065</span> + <span class="tag" style="background:rgba(240,192,96,0.12);color:var(--gold)">1040</span></td></tr>
+          <tr><td>C Corporation</td><td>Corporate tax + possible dividend tax (<strong style="color:var(--rose)">double taxation</strong>)</td><td><span class="tag" style="background:rgba(240,192,96,0.12);color:var(--gold)">Form 1120</span> + <span class="tag" style="background:rgba(240,192,96,0.12);color:var(--gold)">1040</span></td></tr>
+          <tr><td>S Corporation</td><td>Reported by owner (pass-through)</td><td><span class="tag" style="background:rgba(240,192,96,0.12);color:var(--gold)">Form 1120S</span> + <span class="tag" style="background:rgba(240,192,96,0.12);color:var(--gold)">1040</span></td></tr>
+        </tbody>
+      </table>
+      <div class="callout" style="margin-top:16px">
+        <div class="callout-icon">🔑</div>
+        <div><p><strong>Double taxation</strong> only applies to C Corporations — the company pays corporate tax on profits, and then shareholders pay personal income tax on any dividends received. S Corps and LLCs avoid this through pass-through taxation.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 9. ECONOMICS ── -->
+  <div class="section" id="econ">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(160,136,248,0.12);">🌍</div>
+      <div>
+        <div class="section-label" style="color:var(--lavender)">Module 09</div>
+        <div class="section-title">Economic Systems</div>
+      </div>
+    </div>
+
+    <div class="econ-card" style="background:rgba(56,217,192,0.06); border-color:rgba(56,217,192,0.2)">
+      <h3 style="color:var(--teal)">🏕️ Traditional Economy</h3>
+      <p>Family/community-based system that relies on history and rituals to make economic decisions. Self-sufficient, barter-based.</p>
+      <div class="example">Examples: Aboriginal communities, Native American tribes</div>
+    </div>
+
+    <div class="econ-card" style="background:rgba(240,192,96,0.06); border-color:rgba(240,192,96,0.2)">
+      <h3 style="color:var(--gold)">🛒 Market Economy (Free Market)</h3>
+      <p>Consumer-driven. The economy is shaped by choices of individual buyers and sellers. Prices determined by supply and demand.</p>
+      <div class="example">Examples: Most developed countries have elements of this (USA, Japan, UK)</div>
+    </div>
+
+    <div class="econ-card" style="background:rgba(240,96,128,0.06); border-color:rgba(240,96,128,0.2)">
+      <h3 style="color:var(--rose)">🏛️ Command Economy</h3>
+      <p>Government controls production, prices, and distribution. Private ownership is minimal. The state makes all major economic decisions.</p>
+      <div class="example">Examples: Cuba, North Korea</div>
+    </div>
+
+    <div class="econ-card" style="background:rgba(160,136,248,0.06); border-color:rgba(160,136,248,0.2)">
+      <h3 style="color:var(--lavender)">⚖️ Mixed Economy</h3>
+      <p>A blend of market freedom and government regulation/involvement. Most real-world economies fall here.</p>
+      <div class="example">Examples: USA, Japan, most of Western Europe</div>
+    </div>
+  </div>
+
+  <!-- ── 10. MISC ── -->
+  <div class="section" id="misc">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(240,192,96,0.12);">🔑</div>
+      <div>
+        <div class="section-label" style="color:var(--gold)">Module 10</div>
+        <div class="section-title">Key Terms, Diagrams & IP</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Core Economic Concepts</h3>
+        <ul>
+          <li><strong>Scarcity</strong> — Unlimited wants vs. limited resources; the fundamental economic problem</li>
+          <li><strong>Demand</strong> — Consumer desire and willingness to pay for a good/service</li>
+          <li><strong>Supply</strong> — Total amount of a good/service available to consumers</li>
+          <li><strong>Equilibrium</strong> — Where supply and demand balance, stabilizing prices</li>
+          <li><strong>GDP</strong> — Total monetary value of all goods/services produced within a country's borders in a year (includes private/public consumption, government spending, investment, exports minus imports)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Intellectual Property</h3>
+        <ul>
+          <li>
+            <strong>Patent</strong><br>
+            <span style="font-size:13px;color:#9aa0b8">Valid for <span class="highlight">20 years</span> from date of application. Only effective within the US.</span>
+          </li>
+          <li>
+            <strong>Trademark</strong><br>
+            <span style="font-size:13px;color:#9aa0b8">Company logos and brand marks. Valid <span class="highlight">as long as renewed</span> periodically.</span>
+          </li>
+          <li>
+            <strong>Copyright</strong><br>
+            <span style="font-size:13px;color:#9aa0b8">Protects original creative works for the <span class="highlight">author's lifetime + 70 years</span> after death.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3>Important Diagrams</h3>
+      <div class="grid-2">
+        <div>
+          <div style="color:var(--teal);font-weight:700;margin-bottom:8px">PERT Diagram</div>
+          <p style="font-size:14px;color:#9aa0b8"><strong>Program Evaluation and Review Technique.</strong> A statistical project management tool used to analyze and represent tasks involved in completing a project. Shows dependencies and connections between tasks — useful for identifying the critical path.</p>
+        </div>
+        <div>
+          <div style="color:var(--gold);font-weight:700;margin-bottom:8px">SWOT Analysis</div>
+          <p style="font-size:14px;color:#9aa0b8">Evaluates a business or project across four dimensions:</p>
+          <div class="swot-grid" style="margin-top:10px">
+            <div class="swot-cell swot-s"><h4>Strengths</h4><ul><li>Internal advantages</li></ul></div>
+            <div class="swot-cell swot-w"><h4>Weaknesses</h4><ul><li>Internal disadvantages</li></ul></div>
+            <div class="swot-cell swot-o"><h4>Opportunities</h4><ul><li>External advantages</li></ul></div>
+            <div class="swot-cell swot-t"><h4>Threats</h4><ul><li>External risks</li></ul></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Life Cycle Bonus -->
+    <div class="card" style="margin-top:16px">
+      <h3>📈 Product Life Cycle <span style="font-size:14px;font-weight:400;color:var(--muted)">(Bonus — common on test)</span></h3>
+      <table class="styled-table">
+        <thead><tr><th>Stage</th><th>Description</th><th>Marketing Focus</th></tr></thead>
+        <tbody>
+          <tr><td><strong style="color:var(--teal)">Introduction</strong></td><td>New product launched; slow sales, high costs</td><td>Build awareness</td></tr>
+          <tr><td><strong style="color:var(--gold)">Growth</strong></td><td>Sales rise rapidly; competition enters</td><td>Build market share</td></tr>
+          <tr><td><strong style="color:var(--lavender)">Maturity</strong></td><td>Sales peak; market saturated</td><td>Defend market position</td></tr>
+          <tr><td><strong style="color:var(--rose)">Decline</strong></td><td>Sales fall; product may be discontinued</td><td>Cut costs or exit market</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── QUIZ ── -->
+  <div class="quiz-section" id="quiz">
+    <h2>🧠 Test Your Knowledge</h2>
+    <p>Answer these practice questions to prepare for the objective test.</p>
+    <div id="quiz-area">
+      <div id="quiz-start">
+        <button class="btn" onclick="startQuiz()">▶ Start Quiz</button>
+      </div>
+      <div id="quiz-questions" style="display:none"></div>
+      <div id="quiz-result" style="display:none; text-align:center; padding:20px 0">
+        <div class="score-display" id="score-text"></div>
+        <p id="score-msg" style="color:var(--muted); margin-bottom:24px"></p>
+        <button class="btn" onclick="restartQuiz()">↺ Try Again</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Built for FBLA Entrepreneurship Objective Test Prep &nbsp;·&nbsp; Study hard & go for gold 🏆
+</div>
+
+<script>
+  // Intersection Observer for scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.section').forEach(s => observer.observe(s));
+
+  // ── QUIZ DATA ──
+  const questions = [
+    {
+      q: "What is the fundamental accounting equation on a Balance Sheet?",
+      opts: ["Net Income = Revenue − Expenses", "Assets = Liabilities + Equity", "Cash Flow = Operating + Investing + Financing", "Market Share = Sales / Total Market"],
+      ans: 1,
+      exp: "The Balance Sheet equation is Assets = Liabilities + Equity. This always must balance."
+    },
+    {
+      q: "Which financing type means an investor takes partial ownership of your company?",
+      opts: ["Debt financing", "Equity financing", "Micro-loan financing", "Leasing"],
+      ans: 1,
+      exp: "Equity financing involves selling partial ownership. The investor shares risk and reward."
+    },
+    {
+      q: "Which law prohibits monopolies in the United States?",
+      opts: ["Clayton Act", "Robinson-Patman Act", "Sherman Antitrust Act", "Wheeler-Lea Act"],
+      ans: 2,
+      exp: "The Sherman Antitrust Act (1890) prohibits monopolies and anti-competitive practices."
+    },
+    {
+      q: "A C Corporation is subject to which major tax disadvantage?",
+      opts: ["Pass-through taxation", "Self-employment tax", "Double taxation", "Alternative minimum tax"],
+      ans: 2,
+      exp: "C Corps face double taxation — once at the corporate level, and again when dividends are paid to shareholders."
+    },
+    {
+      q: "Which section of a business plan is written LAST but appears FIRST?",
+      opts: ["Company Description", "Financial Projections", "Executive Summary", "Market Analysis"],
+      ans: 2,
+      exp: "The Executive Summary is always written last (after you know all details) but placed first in the plan."
+    },
+    {
+      q: "How long is a patent valid in the United States?",
+      opts: ["10 years from date of application", "15 years from date of approval", "20 years from date of application", "Author's lifetime + 70 years"],
+      ans: 2,
+      exp: "US patents are valid for 20 years from the date of application, and are only effective within the US."
+    },
+    {
+      q: "What type of economy is controlled entirely by the government?",
+      opts: ["Market Economy", "Traditional Economy", "Mixed Economy", "Command Economy"],
+      ans: 3,
+      exp: "A Command Economy is controlled by the government. Examples include Cuba and North Korea."
+    },
+    {
+      q: "Which business structure ELIMINATES double taxation and also protects owners from personal liability?",
+      opts: ["C Corporation", "General Partnership", "S Corporation", "Sole Proprietorship"],
+      ans: 2,
+      exp: "S Corporations use pass-through taxation (no double tax) AND protect owners from personal liability."
+    },
+    {
+      q: "Apple's percentage of total smartphone users is an example of:",
+      opts: ["Market Penetration", "Market Segmentation", "Market Share", "Market Analysis"],
+      ans: 2,
+      exp: "Market Share is the percentage of a market category that one specific company holds."
+    },
+    {
+      q: "Which government agency regulates consumer products NOT covered by the FDA or other specialized agencies?",
+      opts: ["FTC", "FCC", "SBA", "CPSC"],
+      ans: 3,
+      exp: "The Consumer Product Safety Commission (CPSC), created by the Consumer Product Safety Act of 1972, regulates products not covered by other agencies."
+    },
+    {
+      q: "Which form does a sole proprietor use to report business income?",
+      opts: ["Form 1120", "Form 1065", "Form 1120S", "Form 1040"],
+      ans: 3,
+      exp: "Sole proprietors report business income on Form 1040 (personal income tax return)."
+    },
+    {
+      q: "In a Limited Partnership, limited partners have:",
+      opts: ["Full liability but limited input", "Limited liability and limited input", "Full liability and full input", "No liability and full input"],
+      ans: 1,
+      exp: "Limited partners have limited liability (they can only lose their investment) AND limited input in decisions. This is attractive to short-term investors."
+    },
+    {
+      q: "The equilibrium point in a market is when:",
+      opts: ["Demand exceeds supply", "Government sets prices", "Supply and demand balance, stabilizing prices", "A company maximizes profit"],
+      ans: 2,
+      exp: "The equilibrium point is where market supply and demand balance each other, causing prices to stabilize."
+    },
+    {
+      q: "A SWOT analysis evaluates which four dimensions?",
+      opts: ["Sales, Workforce, Operations, Trends", "Strengths, Weaknesses, Opportunities, Threats", "Strategy, Worth, Output, Timing", "Systems, Workflow, Objectives, Tactics"],
+      ans: 1,
+      exp: "SWOT stands for Strengths (internal positives), Weaknesses (internal negatives), Opportunities (external positives), and Threats (external negatives)."
+    },
+    {
+      q: "Which law requires employers to maintain I-9 forms for all employees?",
+      opts: ["Fair Labor Standards Act", "ERISA", "Immigration and Nationality Act", "Sherman Act"],
+      ans: 2,
+      exp: "The Immigration and Nationality Act requires employers to verify work eligibility and keep I-9 forms on file."
+    }
+  ];
+
+  let currentQ = 0;
+  let score = 0;
+  let answered = [];
+
+  function startQuiz() {
+    document.getElementById('quiz-start').style.display = 'none';
+    document.getElementById('quiz-questions').style.display = 'block';
+    renderQuestions();
+  }
+
+  function renderQuestions() {
+    const container = document.getElementById('quiz-questions');
+    container.innerHTML = '';
+    questions.forEach((q, qi) => {
+      const card = document.createElement('div');
+      card.className = 'q-card';
+      card.id = `q${qi}`;
+      card.innerHTML = `
+        <div class="q-text">Q${qi + 1}. ${q.q}</div>
+        <div class="q-options">
+          ${q.opts.map((o, oi) => `
+            <button class="q-opt" onclick="answer(${qi}, ${oi})" id="opt-${qi}-${oi}">${o}</button>
+          `).join('')}
+        </div>
+        <div class="q-feedback" id="fb-${qi}"></div>
+      `;
+      container.appendChild(card);
+    });
+    const submitBtn = document.createElement('div');
+    submitBtn.style.textAlign = 'center';
+    submitBtn.style.marginTop = '24px';
+    submitBtn.innerHTML = `<button class="btn" onclick="showResults()" id="submit-btn" style="opacity:0.5;pointer-events:none">See Results</button>`;
+    container.appendChild(submitBtn);
+    answered = new Array(questions.length).fill(false);
+  }
+
+  function answer(qi, selected) {
+    if (answered[qi]) return;
+    answered[qi] = true;
+
+    const q = questions[qi];
+    const opts = document.querySelectorAll(`#q${qi} .q-opt`);
+    opts.forEach(o => o.classList.add('answered'));
+    opts.forEach(o => o.style.pointerEvents = 'none');
+
+    opts[selected].classList.add(selected === q.ans ? 'correct' : 'wrong');
+    opts[q.ans].classList.add('correct');
+
+    const fb = document.getElementById(`fb-${qi}`);
+    fb.textContent = (selected === q.ans ? '✓ Correct! ' : '✗ Incorrect. ') + q.exp;
+    fb.style.color = selected === q.ans ? 'var(--teal)' : 'var(--rose)';
+    fb.classList.add('show');
+
+    if (selected === q.ans) score++;
+
+    if (answered.every(Boolean)) {
+      document.getElementById('submit-btn').style.opacity = '1';
+      document.getElementById('submit-btn').style.pointerEvents = 'auto';
+    }
+  }
+
+  function showResults() {
+    document.getElementById('quiz-questions').style.display = 'none';
+    document.getElementById('quiz-result').style.display = 'block';
+    const pct = Math.round((score / questions.length) * 100);
+    document.getElementById('score-text').textContent = `${score} / ${questions.length}`;
+    let msg = '';
+    if (pct >= 90) msg = '🏆 Outstanding! You\'re ready for the competition!';
+    else if (pct >= 75) msg = '🌟 Great work! Review the sections you missed.';
+    else if (pct >= 60) msg = '📚 Good effort — spend more time on the topics you missed.';
+    else msg = '💪 Keep studying! Review each module carefully and try again.';
+    document.getElementById('score-msg').textContent = `${pct}% — ${msg}`;
+  }
+
+  function restartQuiz() {
+    score = 0;
+    answered = [];
+    document.getElementById('quiz-result').style.display = 'none';
+    document.getElementById('quiz-questions').style.display = 'block';
+    renderQuestions();
+  }
+</script>
+</body>
+</html>
